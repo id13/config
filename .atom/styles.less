@@ -1,0 +1,57 @@
+@ui-font-size: 18px;
+
+atom-panel.modal .select-list ol.list-group li,
+atom-panel.modal.select-list ol.list-group li {
+  font-size: @ui-font-size;
+}
+
+.status-bar {
+  font-size: @ui-font-size;
+  height: @ui-font-size * 2;
+  line-height: @ui-font-size * 2 - 4;
+}
+
+.tab-bar .tab, .tab-bar .tab.active {
+  font-size: @ui-font-size;
+  height: @ui-font-size * 2;
+}
+
+.tree-view {
+  font-size: @ui-font-size;
+}
+
+.tab-bar {
+  height: 0px;
+  visibility: hidden;
+}
+
+body {
+  font-size: 18px;
+}
+
+.find-and-replace {
+  font-size: 18px;
+    span {
+      font-size: 20px;
+  }
+}
+
+atom-text-editor::shadow {
+
+  .line.highlight-line {
+    background: rgb(7, 54, 66) !important;
+  }
+
+  
+  .vertical-scrollbar {
+    height: 0px;
+    visibility: hidden;
+  }
+
+  .scrollbar-content {
+    height: 0px;
+    visibility: hidden;
+  }
+
+  
+}

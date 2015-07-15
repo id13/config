@@ -1,0 +1,98 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+pad_percents 3
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address.
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+color1 859900
+color2 dc322f
+color3 cb4b16
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+
+# JSON for i3bar
+
+TEXT
+[
+#Shows current user
+
+  {"full_text": "☻ [ ${exec whoami}@${exec hostname} ]", "color":"\#6c71c4"},
+
+#FS infos
+
+  {"full_text": "\u2263 [$fs_free/$fs_used ]",
+   "color" : "\#d33682"
+  },
+
+#Net infos
+
+  {"full_text": "WLAN [ ${if_up wlp2s0}${addr wlp2s0} ▲ ${upspeed wlp2s0} ▼ ${downspeed wlp2s0}${else}DOWN${endif} ]",
+   "color":"${if_up wlp2s0}\#859900${else}\#dc322f${endif}"
+  },
+
+  {"full_text": "ETH [ ${if_up ens9}${addr ens9} ▲ ${upspeed ens9} ▼ ${downspeed ens9}${else}DOWN${endif} ]",
+   "color":"${if_up ens9}\#859900${else}\#dc322f${endif}"
+  },
+
+#Shows current memory usage with a bar
+
+  {"full_text": "|| [ $mem/$memmax ]",
+   "color":"\#268bd2"
+  },
+
+#Shows current CPU usage
+
+  {"full_text": "■ [ ${cpu cpu0} ${cpu cpu1} ${cpu cpu2} ${cpu cpu3} ${cpu cpu4} ${cpu cpu5} ${cpu cpu6} ${cpu cpu7} ]", "color":"\#2aa198"},
+
+#Shows CPU temp
+
+  {
+   "full_text": "T [ ${execi 1 sensors | grep "Core 0:" | cut -c18-24} ]",
+   "color": "${exec sensors | grep "Core 0:" | cut -c18-19 | xargs ~/bin/colorize_cpu.sh}"
+  },
+
+#Bar showing available entropy.
+
+  {"full_text": "~ [ $entropy_avail/$entropy_poolsize ]",
+   "color": "\#93a1a1"
+  },
+
+#Shows upime
+
+  {"full_text": "↑ [${uptime}]","color": "\#dc322f"},
+
+#Battery infos
+
+  {"full_text": "\u26a1[$battery_short : $battery_time]", "color":"\#b58900"},
+
+#Shows time
+
+  {"full_text": "[${time %a %d %b %Y} ${time %H:%M:%S}]","color": "\#fdf6e3"}
+],

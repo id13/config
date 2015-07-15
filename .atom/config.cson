@@ -1,0 +1,41 @@
+"*":
+  whitespace:
+    removeTrailingWhitespace: false
+    ensureSingleTrailingNewline: false
+  "exception-reporting":
+    userId: "ad614065-7919-f075-7196-149b5bda1957"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "atom-solarized-dark-ui"
+      "solarized-dark-syntax"
+    ]
+    audioBeep: false
+    autoHideMenuBar: true
+  editor:
+    invisibles: {}
+    fontFamily: "Monaco"
+    nonWordCharacters: "/\\()\"':,.;><>~!@#$%^&*|+=_[]{}`?-"
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    fontSize: 20
+  "disable-keybindings":
+    bundledPackages: [
+      "find-and-replace"
+    ]
+    exceptCommunityPackages: [
+      "emacs-core-keys"
+    ]
+    allBundledPackages: true
+  minimap:
+    plugins:
+      "git-diff": true
+      selection: true
+  "highlight-line":
+    hideHighlightOnSelect: true
+  "clipboard-plus": {}
+  linter:
+    showErrorPanel: false
+  docblockr: {}
+  "file-explorer": {}
