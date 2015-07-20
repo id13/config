@@ -7,6 +7,6 @@ alias edit='emacs'
 alias subl='/opt/sublime_text_3/sublime_text'
 alias wrefresh="sudo ip link set wlp2s0 down && sudo ip link set wlp2s0 up && sudo wifi-menu"
 alias music='systemctl --user restart mopidy && ncmpcpp'
-alias yaourt='yaourt --noconfirm'
+alias sucre='yaourt --noconfirm'
 alias rake='noglob rake'
 alias cap='noglob cap'
