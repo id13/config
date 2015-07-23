@@ -93,6 +93,8 @@ source ~/.secret_keys
 export PATH="$HOME/bin:$PATH"
 export USER="jd"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PYTHON=/usr/bin/python2
+
 source /home/jd/.rvm/scripts/rvm
 
 
