@@ -1,0 +1,9 @@
+'atom-text-editor:not([mini])':
+  'alt-y':'clipboard-plus:toggle'
+  'ctrl-a': 'editor:move-to-beginning-of-line'
+  'ctrl-x ctrl-x': 'mark:swap'
+  'alt-a': 'editor:move-to-beginning-of-previous-paragraph'
+  'alt-e': 'editor:move-to-beginning-of-next-paragraph'
+  'ctrl-shift-o': 'file-explorer:toggle-home-directory'
+  'ctrl-d': 'find-and-replace:select-next'
+  'ctrl-k': 'editor:delete-line'
