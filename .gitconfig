@@ -22,5 +22,6 @@
 	graph = log --oneline --graph
 	type = cat-file -t
 	dump = cat-file -p
+	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 [core]
 	editor = emacs -nw
