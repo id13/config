@@ -10,3 +10,6 @@ alias music='systemctl --user restart mopidy && ncmpcpp'
 alias sucre='yaourt --noconfirm'
 alias rake='noglob rake'
 alias cap='noglob cap'
+alias reset-pa='pkill pulseaudio && pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect'
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias FUCK)"

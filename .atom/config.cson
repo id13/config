@@ -2,27 +2,36 @@
   whitespace:
     removeTrailingWhitespace: false
     ensureSingleTrailingNewline: false
+    ignoreWhitespaceOnCurrentLine: false
   "exception-reporting":
     userId: "ad614065-7919-f075-7196-149b5bda1957"
   welcome:
     showOnStartup: false
   core:
     themes: [
-      "atom-solarized-dark-ui"
-      "solarized-dark-syntax"
+      "nucleus-dark-ui"
+      "minimal-solarized-dark-syntax"
     ]
     audioBeep: false
+    disabledPackages: [
+      "welcome"
+      "tabs"
+      "symbol-gen"
+    ]
     autoHideMenuBar: true
+    destroyEmptyPanes: false
   editor:
     invisibles: {}
-    fontFamily: "Monaco"
     nonWordCharacters: "/\\()\"':,.;><>~!@#$%^&*|+=_[]{}`?-"
     softWrap: true
     softWrapAtPreferredLineLength: true
-    fontSize: 20
+    showInvisibles: true
+    fontSize: 21
+    fontFamily: "Inconsolata"
   "disable-keybindings":
     bundledPackages: [
       "find-and-replace"
+      "delete-line"
     ]
     exceptCommunityPackages: [
       "emacs-core-keys"
@@ -34,8 +43,62 @@
       selection: true
   "highlight-line":
     hideHighlightOnSelect: true
+    enableBackgroundColor: false
   "clipboard-plus": {}
   linter:
     showErrorPanel: false
   docblockr: {}
   "file-explorer": {}
+  "rails-transporter": {}
+  "merge-conflicts": {}
+  pigments:
+    sortPaletteColors: "by name"
+    groupPaletteColors: "by file"
+  "atom-pair": {}
+  "git-blame": {}
+  blame: {}
+  "atom-beautify":
+    _analyticsUserId: "d14dcaa4-6fbd-4611-ac4e-ea5828555e35"
+  "linter-ruby-reek":
+    executablePath: "/home/jd/.rvm/gems/ruby-2.2.2/bin/reek"
+  "linter-rubocop":
+    executablePath: "/home/jd/.rvm/gems/ruby-2.2.2/bin/rubocop"
+  autosave: {}
+  hidpi: {}
+  "spotify-linux": {}
+  "isotope-ui":
+    customBackgroundColorPicker:
+      red: 0
+      green: 159
+      blue: 255
+      alpha: 1
+    backgroundGradient: true
+  "tool-bar":
+    position: "Left"
+  "tree-view": {}
+  "clipboard-history":
+    showSnippetForLargeItems: false
+  "base16-syntax":
+    scheme: "Solarized"
+  "autocomplete-elixir": {}
+  "linter-elixirc":
+    elixircExecutablePath: '''
+      /home/jd/.exenv/shims/elixirc
+      
+    '''
+  "fuzzy-finder": {}
+  "fuzzy-finder-plus": {}
+  "file-icons": {}
+  "ruby-block":
+    showBottomPanel: false
+    highlightLineNumber: true
+    highlightLine: false
+".elixir.html.text":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;><>~!@#$%^&*|+=_[]{}`?-"
+".elixir.text":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;><>~!@#$%^&*|+=_[]{}`?-"
+".elixir.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;><>~!@#$%^&*|+=_[]{}`?-"

@@ -1,46 +1,16 @@
-@ui-font-size: 18px;
-
-atom-panel.modal .select-list ol.list-group li,
-atom-panel.modal.select-list ol.list-group li {
-  font-size: @ui-font-size;
+.git-blame {
+  width: 450px;
 }
 
-.status-bar {
-  font-size: @ui-font-size;
-  height: @ui-font-size * 2;
-  line-height: @ui-font-size * 2 - 4;
-}
-
-.tab-bar .tab, .tab-bar .tab.active {
-  font-size: @ui-font-size;
-  height: @ui-font-size * 2;
-}
-
-.tree-view {
-  font-size: @ui-font-size;
-}
-
-.tab-bar {
-  height: 0px;
-  visibility: hidden;
-}
-
-body {
-  font-size: 18px;
-}
-
-.find-and-replace {
-  font-size: 18px;
-    span {
-      font-size: 20px;
-  }
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 atom-text-editor::shadow {
 
-  .line.highlight-line {
-    background: rgb(7, 54, 66) !important;
-  }
+  // .line.highlight-line {
+  //   background: rgb(7, 54, 66) !important;
+  // }
 
   
   .vertical-scrollbar {
@@ -52,6 +22,20 @@ atom-text-editor::shadow {
     height: 0px;
     visibility: hidden;
   }
+  
+  .invisible-character {
+    
+    color: rgba(101, 123, 131, 0.5);
+    
+  }
+  // 
+  // .gutter {
+  //   background-color: #002b36;
+  // }
+  // 
+  // .line-number.cursor-line-no-selection {
+  //   background-color: #073642;
+  // }
 
   
 }

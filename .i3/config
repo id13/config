@@ -22,7 +22,7 @@
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
-font pango: Inconsolata Medium 14
+font pango: Inconsolata Medium 18
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -59,8 +59,6 @@ bindsym Mod4+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'Inconso
 ## Monitors workspaces related
 
 workspace 1 output eDP1
-workspace 2 output eDP1
-workspace 3 output eDP1
  
 bindsym Mod4+Mod1+Left move workspace to output left
 bindsym Mod4+Mod1+Right move workspace to output right

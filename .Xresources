@@ -3,7 +3,7 @@ Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
 Xft.hintstyle: hintfull
-Xft.dpi:       160
+Xft.dpi:       198
 
 
 ! URxvt*geometry:                       geometry
@@ -57,7 +57,7 @@ URxvt*scrollBar:                      false
 ! URxvt*pointerColor2:                  color
 ! URxvt*borderColor:                    color
 ! URxvt*iconFile:                       file
-URxvt*font: xft:monaco:size=9, xft:DejaVu Sans Mono:medium:size=11, xft:Inconsolata for powerline:medium:size=10, xft:PowerlineSymbols:medium:size=10
+URxvt*font: xft:Inconsolata:size=13, xft:DejaVu Sans Mono:medium:size=13, xft:Inconsolata for powerline:medium:size=13, xft:PowerlineSymbols:medium:size=11
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
