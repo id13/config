@@ -25,3 +25,7 @@
 	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 [core]
 	editor = emacs -nw
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

@@ -5,4 +5,4 @@ alias less='less -R'
 alias edit='emacs'
 alias rake='noglob rake'
 alias cap='noglob cap'
-alias sftp='with-readline sftp'
+
