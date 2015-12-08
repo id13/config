@@ -92,16 +92,19 @@ source ~/.secret_keys
 
 export PATH="$HOME/bin:$PATH"
 export USER="jd"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PYTHON=/usr/bin/python2
 export GDK_SCALE=2
 export GDK_DPI_SCALE=0.5
-source $HOME/.rvm/scripts/rvm
 
-
-
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 unsetopt nomatch
-PATH=$HOME/.exenv/shims:$PATH
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source ~/git-dashboard/git-dashboard.sh
+export PATH="$HOME/.exenv/bin:$PATH"
 eval "$(exenv init -)"
-eval `/usr/libexec/path_helper -s`
+. /usr/local/erlang/activate
+export JAVA_HOME=`/usr/libexec/java_home`
+source /Users/jd/.venvburrito/startup.sh
