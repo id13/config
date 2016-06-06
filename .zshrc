@@ -47,25 +47,19 @@
 
 # User configuration
 
-export MANPATH="/usr/local/man:$MANPATH"
 
 # source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
 # fi
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -89,22 +83,15 @@ source ~/.mvn_colors # mvn-colors
 source ~/.less_colors # less-colors
 source ~/.bindkeys
 source ~/.secret_keys
+source ~/.zshenv
 
-export PATH="$HOME/bin:$PATH"
-export USER="jd"
-export PYTHON=/usr/bin/python2
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 
 unsetopt nomatch
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source ~/git-dashboard/git-dashboard.sh
-export PATH="$HOME/.exenv/bin:$PATH"
 eval "$(exenv init -)"
 . /usr/local/erlang/activate
-export JAVA_HOME=`/usr/libexec/java_home`
-source /Users/jd/.venvburrito/startup.sh
+
+
+eval "$(pyenv init -)"
+source /Users/jd/.Sublivim/sublivimrc.sh
