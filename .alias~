@@ -1,8 +1,0 @@
-alias emacs='emacs -nw'
-alias ll='ls -alsh'
-alias ls='ls -G'
-alias less='less -R'
-alias edit='emacs'
-alias rake='noglob rake'
-alias cap='noglob cap'
-
