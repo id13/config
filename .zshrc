@@ -93,5 +93,4 @@ eval "$(exenv init -)"
 . /usr/local/erlang/activate
 
 
-eval "$(pyenv init -)"
 source /Users/jd/.Sublivim/sublivimrc.sh

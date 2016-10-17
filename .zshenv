@@ -1,4 +1,4 @@
-export ZSH=/home/jd/.oh-my-zsh
+export ZSH=/Users/jd/.oh-my-zsh
 export MANPATH="/usr/local/man:$MANPATH"
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -14,8 +14,8 @@ export PATH="$HOME/.exenv/bin:$PATH"
 export JAVA_HOME=`/usr/libexec/java_home`
 export PATH="$HOME/.exenv/shims/elixir:$PATH"
 export EDITOR="emacs"
-export PATH="$HOME/.pyenv/shims:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/go_home
 export PATH=$PATH:$GOPATH/bin
+export PATH=/Users/jd/anaconda3/bin:$PATH
