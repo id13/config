@@ -93,7 +93,6 @@ source ~/.secret_keys
 export PATH="$HOME/bin:$PATH"
 export USER="jd"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PYTHON=/usr/bin/python2
 export GDK_SCALE=2
 export GDK_DPI_SCALE=0.5
 source /home/jd/.rvm/scripts/rvm

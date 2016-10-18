@@ -1,7 +1,5 @@
 alias wifi='sudo ip link set wlp2s0 down &&  sudo wifi-menu wlp2s0'
 alias emacs='emacs -nw'
-alias ls='ls --color=auto'
-alias ll='ls --color=auto -al'
 alias less='less -R'
 alias edit='emacs'
 alias subl='/opt/sublime_text_3/sublime_text'
@@ -11,5 +9,3 @@ alias sucre='yaourt --noconfirm'
 alias rake='noglob rake'
 alias cap='noglob cap'
 alias reset-pa='pkill pulseaudio && pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect'
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias FUCK)"
