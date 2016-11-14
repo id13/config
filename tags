@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/34ff9d4/
+LANG	locale.conf	/^LANG=en_US.UTF-8$/;"	k
+LANGUAGE	locale.conf	/^LANGUAGE=en_US$/;"	k
+LC_ADDRESS	locale.conf	/^LC_ADDRESS=en_US.UTF-8$/;"	k
+LC_ALL	locale.conf	/^LC_ALL=en_US.UTF-8$/;"	k
+LC_COLLATE	locale.conf	/^LC_COLLATE=C$/;"	k
+LC_CTYPE	locale.conf	/^LC_CTYPE="en_US.UTF-8"$/;"	k
+LC_CTYPE	locale.conf	/^LC_CTYPE=en_US.UTF-8$/;"	k
+LC_IDENTIFICATION	locale.conf	/^LC_IDENTIFICATION=en_US.UTF-8$/;"	k
+LC_MEASUREMENT	locale.conf	/^LC_MEASUREMENT=en_US.UTF-8$/;"	k
+LC_MESSAGES	locale.conf	/^LC_MESSAGES=C$/;"	k
+LC_MONETARY	locale.conf	/^LC_MONETARY=en_US.UTF-8$/;"	k
+LC_NAME	locale.conf	/^LC_NAME=en_US.UTF-8$/;"	k
+LC_NUMERIC	locale.conf	/^LC_NUMERIC=en_US.UTF-8$/;"	k
+LC_PAPER	locale.conf	/^LC_PAPER=en_US.UTF-8$/;"	k
+LC_TELEPHONE	locale.conf	/^LC_TELEPHONE=en_US.UTF-8$/;"	k
+LC_TIME	locale.conf	/^LC_TIME=en_DK.UTF-8$/;"	k
+Settings	gtk3/settings.ini	/^[Settings]$/;"	s
+theme	gtk3/settings.ini	/^gtk-application-prefer-dark-theme=1$/;"	k	section:Settings

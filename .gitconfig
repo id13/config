@@ -24,7 +24,7 @@
 	dump = cat-file -p
 	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 [core]
-	editor = emacs -nw -q
+	editor = nvim
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
