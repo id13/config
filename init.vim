@@ -42,6 +42,11 @@ call dein#add('sheerun/vim-polyglot')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('joshdick/onedark.vim')
+call dein#add('tpope/vim-bundler')
+call dein#add('tpope/vim-rails')
+call dein#add('majutsushi/tagbar')
+call dein#add('kchmck/vim-coffee-script')
+
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -183,3 +188,22 @@ nnoremap <leader>w :call BufferDelete()<cr>
 let g:airline_theme='simple'
 hi Normal ctermbg=none
 set autoread
+nmap <leader>t :TagbarToggle<CR>
+au CursorHold * checktime 
+" CtrlP auto cache clearing.
+" ----------------------------------------------------------------------------
+function! SetupCtrlP()
+  if exists("g:loaded_ctrlp") && g:loaded_ctrlp
+    augroup CtrlPExtension
+      autocmd!
+      autocmd FocusGained  * CtrlPClearCache
+      autocmd BufWritePost * CtrlPClearCache
+    augroup END
+  endif
+endfunction
+if has("autocmd")
+  autocmd VimEnter * :call SetupCtrlP()
+endif
+" Fugitive
+set diffopt+=vertical
+nmap <leader>gd :Gdiff<cr>
