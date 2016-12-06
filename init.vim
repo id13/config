@@ -207,3 +207,6 @@ endif
 " Fugitive
 set diffopt+=vertical
 nmap <leader>gd :Gdiff<cr>
+
+" Wild copy and paste
+set clipboard+=unnamedplus
