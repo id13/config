@@ -16,5 +16,4 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/go_home
 export PATH=$PATH:$GOPATH/bin
-export PATH=/Users/jd/anaconda3/bin:$PATH
 export DJANGO_DEV='true'
