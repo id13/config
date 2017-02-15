@@ -46,6 +46,8 @@ call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-rails')
 call dein#add('majutsushi/tagbar')
 call dein#add('kchmck/vim-coffee-script')
+call dein#add('editorconfig/editorconfig-vim')
+call dein#add('neomake/neomake')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -210,3 +212,15 @@ nmap <leader>gd :Gdiff<cr>
 
 " Wild copy and paste
 set clipboard+=unnamedplus
+" Auto leave pastemode when leaving insert
+autocmd InsertLeave * :set nopaste
+" Set permanent undodir
+set undodir=~/.config/nvim/undodir
+set undofile
+
+" Neomake settings
+	
+let g:neomake_scss_enabled_makers = ['sass-lint']
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd BufWritePost,BufEnter * Neomake
+autocmd InsertChange,TextChanged * update | Neomake

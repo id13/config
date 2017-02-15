@@ -1,4 +1,5 @@
-alias ll='ls -alsh'
+alias tmux='TERM=xterm-256color \tmux'
+alias grep='grep --color=auto'
 alias vim='nvim'
 alias ls='ls -G'
 alias less='less -R'
@@ -9,3 +10,41 @@ alias sftp='with-readline sftp'
 alias lsports='sudo nmap -sT -O localhost'
 alias octave='octave -W'
 alias rrdb='rake db:drop; rake db:create; rake db:migrate; rake db:migrate RAILS_ENV=test;'
+alias gbri="git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n"
+
+# Filesystem
+alias ..='cd ..'            # Go up one directory
+alias ...='cd ../..'        # Go up two directories
+alias ....='cd ../../..'    # And for good measure
+alias ls='ls --color=auto'  # gimmie colors
+alias l='ls -lah --color=auto'   # Long view, show hidden
+alias la='ls -AF --color=auto'   # Compact view, show hidden
+alias ll='ls -lFh --color=auto'  # Long view, no hidden
+
+# Mac
+alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
+alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
+
+# Python
+
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias pypath='python -c "import sys; print sys.path" | tr "," "\n" | grep -v "egg"'
+alias pycclean='find . -name "*.pyc" -exec rm {} \; && find . -name "__pycache__" -exec rm -rf {} \;'
+
+# GIT ALIASES
+alias g=git
+alias ga='git add'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gc='git commit -v'
+alias gl='git pull'
+alias gp='git push'
+alias gst='git status -sb'
+alias gsd='git svn dcommit'
+alias gsr='git svn rebase'
+alias gs='git stash'
+alias gsa='git stash apply'
+alias gr='git stash && git svn rebase && git svn dcommit && git stash pop' # git refresh
+alias gd='git diff | $GIT_EDITOR -'
+alias gmv='git mv'
+alias gho='$(git remote -v 2> /dev/null | grep github | sed -e "s/.*git\:\/\/\([a-z]\.\)*/\1/" -e "s/\.git.*//g" -e "s/.*@\(.*\)$/\1/g" | tr ":" "/" | tr -d "\011" | sed -e "s/^/open http:\/\//g" | uniq)'

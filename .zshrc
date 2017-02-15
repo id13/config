@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 function list_all() {
-    ls -a
+    ls -a --color=auto
 }
 
 chpwd_functions=(${chpwd_functions[@]} "list_all")
@@ -25,24 +25,24 @@ source ~/.bindkeys
 source ~/.secret_keys
 
 unsetopt nomatch
+unsetopt CORRECT                      # Disable autocorrect guesses. Happens when typing a wrong
+                                      # command that may look like an existing one.
 
+expand-or-complete-with-dots() {      # This bunch of code displays red dots when autocompleting
+  echo -n "\e[31m......\e[0m"         # a command with the tab key, "Oh-my-zsh"-style.
+  zle expand-or-complete
+  zle redisplay
+}
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots
+# Directories
+zstyle ':completion:*:default' list-colors ''
+
+source $HOME/.zshenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 source $HOME/.rvm/scripts/rvm
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:/usr/local/bin"
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export PATH=$PATH:$GOPATH/bin
-export MANPATH="/usr/local/man:$MANPATH"
-export ARCHFLAGS="-arch x86_64"
-export SSH_KEY_PATH="~/.ssh/id_rsa"
-export USER="jd"
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export JAVA_HOME=`/usr/libexec/java_home`
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-export EDITOR="vim"
-export TERM="xterm-256color"
+if [ -e /Users/jd/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jd/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+eval "$(direnv hook zsh)"
 
+source $HOME/.zshfunc
