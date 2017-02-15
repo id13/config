@@ -48,6 +48,7 @@ call dein#add('majutsushi/tagbar')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('neomake/neomake')
+call dein#add('chase/vim-ansible-yaml')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -220,7 +221,14 @@ set undofile
 
 " Neomake settings
 	
-let g:neomake_scss_enabled_makers = ['sass-lint']
+let g:neomake_sass_sasslint_maker = {
+        \ 'exe': 'sass-lint',
+        \ 'args': ['--no-exit', '-v', '--format=compact'],
+        \ 'errorformat':
+            \ '%E%f: line %l\, col %c\, Error - %m,' .
+            \ '%W%f: line %l\, col %c\, Warning - %m',
+        \ } 
+let g:neomake_sass_enabled_makers = ['sasslint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd BufWritePost,BufEnter * Neomake
 autocmd InsertChange,TextChanged * update | Neomake
