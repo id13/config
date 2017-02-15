@@ -16,10 +16,9 @@ alias gbri="git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(
 alias ..='cd ..'            # Go up one directory
 alias ...='cd ../..'        # Go up two directories
 alias ....='cd ../../..'    # And for good measure
-alias ls='ls --color=auto'  # gimmie colors
-alias l='ls -lah --color=auto'   # Long view, show hidden
-alias la='ls -AF --color=auto'   # Compact view, show hidden
-alias ll='ls -lFh --color=auto'  # Long view, no hidden
+alias l='ls -lah'   # Long view, show hidden
+alias la='ls -AF'   # Compact view, show hidden
+alias ll='ls -lFh'  # Long view, no hidden
 
 # Mac
 alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
@@ -28,7 +27,7 @@ alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killa
 # Python
 
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
-alias pypath='python -c "import sys; print sys.path" | tr "," "\n" | grep -v "egg"'
+alias pypath='python -c "import sys; print(sys.path)" | tr "," "\n" | grep -v "egg"'
 alias pycclean='find . -name "*.pyc" -exec rm {} \; && find . -name "__pycache__" -exec rm -rf {} \;'
 
 # GIT ALIASES

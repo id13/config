@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 function list_all() {
-    ls -a --color=auto
+    ls -a
 }
 
 chpwd_functions=(${chpwd_functions[@]} "list_all")
