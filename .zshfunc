@@ -32,15 +32,18 @@ dls () {
  # directory LS
  echo `ls -l | grep "^d" | awk '{ print $9 }' | tr -d "/"`
 }
+
 dgrep() {
     # A recursive, case-insensitive grep that excludes binary files
     grep -iR "$@" * | grep -v "Binary"
 }
+
 dfgrep() {
     # A recursive, case-insensitive grep that excludes binary files
     # and returns only unique filenames
     grep -iR "$@" * | grep -v "Binary" | sed 's/:/ /g' | awk '{ print $1 }' | sort | uniq
 }
+
 psgrep() {
     if [ ! -z $1 ] ; then
         echo "Grepping for processes matching $1..."
@@ -67,7 +70,7 @@ portslay () {
 exip () {
     # gather external ip address
     echo -n "Current External IP: "
-    curl -s -m 5 http://myip.dk | grep "ha4" | sed -e 's/.*ha4">//g' -e 's/<\/span>.*//g'
+    curl -s -m 5 "http://myexternalip.com/raw"
 }
 
 ips () {
