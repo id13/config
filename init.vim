@@ -37,13 +37,13 @@ call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-fugitive')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('ludovicchabant/vim-gutentags')
-call dein#add('terryma/vim-multiple-cursors')
 call dein#add('sheerun/vim-polyglot')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('joshdick/onedark.vim')
 call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-rails')
+call dein#add('tpope/vim-abolish')
 call dein#add('majutsushi/tagbar')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('editorconfig/editorconfig-vim')
@@ -52,6 +52,7 @@ call dein#add('chase/vim-ansible-yaml')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('godlygeek/tabular')
 call dein#add('907th/vim-auto-save')
+call dein#add('haya14busa/incsearch.vim')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -226,3 +227,17 @@ autocmd InsertChange,TextChanged * update | Neomake
 set foldcolumn=2
 set foldmethod=syntax
 set foldlevel=5
+
+" incremental Search
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
