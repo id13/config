@@ -19,3 +19,4 @@ export GOPATH=$HOME/go_home
 export PATH=$PATH:$GOPATH/bin
 export DJANGO_DEV=true
 export TERM="xterm-256color"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
