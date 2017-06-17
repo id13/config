@@ -52,8 +52,11 @@ call dein#add('chase/vim-ansible-yaml')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('godlygeek/tabular')
 call dein#add('907th/vim-auto-save')
+call dein#add('pangloss/vim-javascript')
+call dein#add('mxw/vim-jsx')
 call dein#add('mattn/emmet-vim')
-"call dein#add('haya14busa/incsearch.vim')
+call dein#add('alvan/vim-closetag')
+call dein#add('chrisbra/Colorizer')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -102,7 +105,6 @@ set wildmenu
 set ignorecase
 set magic
 set smartcase
-set incsearch
 set nohlsearch
 
 " autosave
@@ -229,16 +231,11 @@ set foldcolumn=2
 set foldmethod=syntax
 set foldlevel=5
 
-" " incremental Search
-" set hlsearch
-" let g:incsearch#auto_nohlsearch = 1
-" map n  <Plug>(incsearch-nohl-n)
-" map N  <Plug>(incsearch-nohl-N)
-" map *  <Plug>(incsearch-nohl-*)
-" map #  <Plug>(incsearch-nohl-#)
-" map g* <Plug>(incsearch-nohl-g*)
-" map g# <Plug>(incsearch-nohl-g#)
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
-" map /  <Plug>(incsearch-forward)
-" map ?  <Plug>(incsearch-backward)
-" map g/ <Plug>(incsearch-stay)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+:let g:colorizer_auto_filetype='scss,jsx,js,sass,css,html'
