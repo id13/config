@@ -1,4 +1,4 @@
-let g:python_host_prog = '/Users/jd/neovim-python/env2/bin/python'
+let g:python_host_prog = '/Users/jd/neovim-python/env3/bin/python'
 let g:python3_host_prog = '/Users/jd/neovim-python/env3/bin/python' 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -38,8 +38,6 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('ludovicchabant/vim-gutentags')
 call dein#add('sheerun/vim-polyglot')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
 call dein#add('joshdick/onedark.vim')
 call dein#add('tpope/vim-bundler')
 call dein#add('tpope/vim-rails')
