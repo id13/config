@@ -237,3 +237,5 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 :let g:colorizer_auto_filetype='scss,jsx,js,sass,css,html'
+
+:set mouse=a
