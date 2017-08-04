@@ -55,6 +55,7 @@ call dein#add('mxw/vim-jsx')
 call dein#add('mattn/emmet-vim')
 call dein#add('alvan/vim-closetag')
 call dein#add('chrisbra/Colorizer')
+call dein#add('dojoteef/neomake-autolint')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
