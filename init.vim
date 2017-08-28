@@ -240,3 +240,6 @@ nmap ga <Plug>(EasyAlign)
 :let g:colorizer_auto_filetype='scss,jsx,js,sass,css,html'
 
 :set mouse=a
+
+" Ctrlp
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:64,results:64'
