@@ -24,4 +24,14 @@
 	dump = cat-file -p
 	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 [core]
-	editor = emacs -nw
+	editor = nvim
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[diff "ansible-vault"]
+        textconv = ansible-vault view
+        cachetextconv = false
+[merge "ansible-vault"]
+    name = ansible-vault merge driver
+    driver = $HOME/bin/ansible-vault-merge -- %O %A %B %P
