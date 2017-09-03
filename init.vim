@@ -1,5 +1,3 @@
-let g:python_host_prog = '/Users/jd/neovim-python/env3/bin/python'
-let g:python3_host_prog = '/Users/jd/neovim-python/env3/bin/python' 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:onedark_termcolors=256
@@ -11,10 +9,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/jd/.dein.d//repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.dein.d//repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('/Users/jd/.dein.d/')
+call dein#begin('~/.dein.d/')
 
 " Let dein manage dein
 " Required:
@@ -74,7 +72,7 @@ endif
 
 "End dein Scripts-------------------------
 " Enable plugins
-let g:deoplete#enable_at_startup=1
+call deoplete#enable()
 autocmd FileType markdown let g:deoplete#enable_at_startup=0
 
 syntax on
