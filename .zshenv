@@ -11,7 +11,9 @@ export LANG=en_US.UTF-8
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$HOME/.exenv/bin:$PATH"
-export JAVA_HOME=`/usr/libexec/java_home`
+if [[ -s "/usr/libexec/java_home" ]]; then
+	export JAVA_HOME=`/usr/libexec/java_home`
+fi
 export PATH="$HOME/.exenv/shims/elixir:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PATH=$PATH:/usr/local/opt/go/libexec/bin

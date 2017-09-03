@@ -2,8 +2,11 @@
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
+Xft.lcdfinder: lcddefault
+Xft.autohint: 0
 Xft.hintstyle: hintfull
-Xft.dpi:       198
+Xft.dpi:       190
+
 
 
 ! URxvt*geometry:                       geometry

@@ -22,7 +22,7 @@ source ~/.alias # aliases
 source ~/.mvn_colors # mvn-colors
 source ~/.less_colors # less-colors
 source ~/.bindkeys
-source ~/.secret_keys
+# source ~/.secret_keys
 
 unsetopt nomatch
 unsetopt CORRECT                      # Disable autocorrect guesses. Happens when typing a wrong
@@ -41,7 +41,10 @@ zstyle ':completion:*:default' list-colors ''
 source $HOME/.zshenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-source $HOME/.rvm/scripts/rvm
+if [[ -s "${HOME}/.rvm/scripts/rvm" ]]; then
+	source $HOME/.rvm/scripts/rvm
+fi
+
 if [ -e /Users/jd/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jd/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval "$(direnv hook zsh)"
 

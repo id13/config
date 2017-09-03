@@ -1,16 +1,14 @@
 
-DEFAULTSESSION=i3-session
 
 [[ -f ~/.Xdefaults ]] && xrdb -merge ~/.Xdefaults
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 redshift-gtk -l 45:2 -t 4200:2200 &
 
-xbindkeys &
-screen-left
-sh screen-left.sh
-feh --bg-fill ~/wallpaper.jpg
+xbindkeys
 
-xset r rate 200 50&
-unclutter &
-exec i3 --shmlog-size=26214400
+rate
+xset r rate 270 30
+xrandr --dpi 190
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+exec startkde
