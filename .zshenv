@@ -20,7 +20,6 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/go_home
 export PATH=$PATH:$GOPATH/bin
 export DJANGO_DEV=true
-export TERM="xterm-256color"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/imagemagick/bin:$PATH"

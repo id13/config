@@ -1,6 +1,5 @@
 alias wifi='sudo ip link set wlp2s0 down &&  sudo wifi-menu wlp2s0'
 alias emacs='emacs -nw'
-alias tmux='TERM=xterm-256color \tmux'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias less='less -R'

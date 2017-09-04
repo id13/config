@@ -240,4 +240,8 @@ nmap ga <Plug>(EasyAlign)
 :set mouse=a
 
 " Ctrlp
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:64,results:64'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:32,results:32'
+
+" Cursor
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+set guicursor=n:blinkon1

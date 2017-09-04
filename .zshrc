@@ -22,7 +22,7 @@ source ~/.alias # aliases
 source ~/.mvn_colors # mvn-colors
 source ~/.less_colors # less-colors
 source ~/.bindkeys
-# source ~/.secret_keys
+source ~/.secret_keys
 
 unsetopt nomatch
 unsetopt CORRECT                      # Disable autocorrect guesses. Happens when typing a wrong
