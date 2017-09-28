@@ -51,3 +51,8 @@ alias gr='git stash && git svn rebase && git svn dcommit && git stash pop' # git
 alias gd='git diff | $GIT_EDITOR -'
 alias gmv='git mv'
 alias gho='$(git remote -v 2> /dev/null | grep github | sed -e "s/.*git\:\/\/\([a-z]\.\)*/\1/" -e "s/\.git.*//g" -e "s/.*@\(.*\)$/\1/g" | tr ":" "/" | tr -d "\011" | sed -e "s/^/open http:\/\//g" | uniq)'
+
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  alias open='xdg-open'
+fi

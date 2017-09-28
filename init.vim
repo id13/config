@@ -224,9 +224,9 @@ autocmd BufWritePost,BufEnter * Neomake
 autocmd InsertChange,TextChanged * update | Neomake
 
 " Folding
-set foldcolumn=2
-set foldmethod=syntax
-set foldlevel=5
+" set foldcolumn=2
+" set foldmethod=syntax
+" set foldlevel=5
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
