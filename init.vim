@@ -34,7 +34,7 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-fugitive')
 call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('ludovicchabant/vim-gutentags')
+" call dein#add('ludovicchabant/vim-gutentags')
 call dein#add('sheerun/vim-polyglot')
 call dein#add('joshdick/onedark.vim')
 call dein#add('tpope/vim-bundler')
@@ -53,7 +53,9 @@ call dein#add('mxw/vim-jsx')
 call dein#add('mattn/emmet-vim')
 call dein#add('alvan/vim-closetag')
 call dein#add('chrisbra/Colorizer')
-call dein#add('dojoteef/neomake-autolint')
+call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
+call dein#add('leafgarland/typescript-vim')
+call dein#add('ianks/vim-tsx')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -210,6 +212,9 @@ set undofile
 
 " Neomake settings
 	
+" let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+" let g:neomake_typescript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+
 let g:neomake_sass_sasslint_maker = {
         \ 'exe': 'sass-lint',
         \ 'args': ['--no-exit', '-v', '--format=compact'],
@@ -219,7 +224,35 @@ let g:neomake_sass_sasslint_maker = {
         \ } 
 let g:neomake_sass_enabled_makers = ['sasslint']
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_ruby_enabled_makers = ['mri']
+
+let g:neomake_typescript_eslint_maker = {
+    \ 'args': ['--format=compact'],
+    \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+    \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+    \ 'cwd': '%:p:h',
+    \ 'output_stream': 'stdout',
+    \ }
+ let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+ let g:neomake_typescript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+
+let g:neomake_typescript_enabled_makers = ['eslint']
+" let g:neomake_ruby_enabled_makers = ['mri']
+let g:neomake_python_flake8_maker = {
+    \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
+    \ 'errorformat':
+        \ '%E%f:%l: could not compile,%-Z%p^,' .
+        \ '%A%f:%l:%c: %t%n %m,' .
+        \ '%A%f:%l: %t%n %m,' .
+        \ '%-G%.%#',
+    \ }
+let g:neomake_python_mypy_maker = {
+    \ 'args': ['--ignore-missing-imports'],
+    \ 'errorformat':
+        \ '%E%f:%l: error: %m,' .
+        \ '%W%f:%l: warning: %m,' .
+        \ '%I%f:%l: note: %m',
+    \ }
+let g:neomake_python_enabled_makers = ['flake8', 'mypy']
 autocmd BufWritePost,BufEnter * Neomake
 autocmd InsertChange,TextChanged * update | Neomake
 

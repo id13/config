@@ -3,9 +3,10 @@
 	email = jdfiquet2@gmail.com
 [diff]
 	renames = true
+	submodule = log
 
 [color]
-	ui = auto
+	ui = true
 
 [push]
 	default = current
@@ -16,6 +17,9 @@
 	st = status
 	br = branch
 	mergef = merge --ff-only
+  smf = submodule foreach
+  sm = submodule
+  chlg = log master..release --pretty=format:'- %s' --reverse
 	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
 	hist = log --graph --date=short --pretty=tformat:'%Cred%h%Creset %Cgreen%ad%Creset | %C(auto)%d%Creset %s %Cgreen(%an)%Creset' --all -n20
 	hista = log --graph --date=short --pretty=tformat:'%Cred%h%Creset %Cgreen%ad%Creset | %C(auto)%d%Creset %s %Cgreen(%an)%Creset' --all
@@ -24,14 +28,28 @@
 	dump = cat-file -p
 	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 [core]
-	editor = nvim
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [diff "ansible-vault"]
         textconv = ansible-vault view
         cachetextconv = false
 [merge "ansible-vault"]
     name = ansible-vault merge driver
     driver = $HOME/bin/ansible-vault-merge -- %O %A %B %P
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

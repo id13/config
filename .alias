@@ -45,7 +45,6 @@ alias gg='git grep'
 alias gst='git status -sb'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
-alias gs='git stash'
 alias gsa='git stash apply'
 alias gr='git stash && git svn rebase && git svn dcommit && git stash pop' # git refresh
 alias gd='git diff | $GIT_EDITOR -'
