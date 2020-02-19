@@ -49,3 +49,4 @@ if [ -e /Users/jd/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jd/.nix-pro
 eval "$(direnv hook zsh)"
 
 source $HOME/.zshfunc
+direnv reload
