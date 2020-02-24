@@ -45,8 +45,9 @@ if [[ -s "${HOME}/.rvm/scripts/rvm" ]]; then
 	source $HOME/.rvm/scripts/rvm
 fi
 
-if [ -e /Users/jd/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jd/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 eval "$(direnv hook zsh)"
 
 source $HOME/.zshfunc
-direnv reload

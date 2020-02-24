@@ -34,14 +34,7 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'homebrew' \
-  'osx' \
-  'ruby' \
-  'rails' \
-  'git' \
-  'node' \
   'syntax-highlighting' \
-  'tmux' \
-  'utility' \
   'prompt'
 
 #

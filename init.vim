@@ -1,7 +1,7 @@
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:onedark_termcolors=256
-" let g:airline_theme='onedark'
+let g:airline_theme='onedark'
 
 "dein Scripts-----------------------------
 if &compatible
@@ -21,31 +21,21 @@ call dein#add('Shougo/dein.vim')
 " Add or remove your plugins here:
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
-call dein#add('Shougo/deoplete.nvim')
 call dein#add('tpope/vim-repeat')
 call dein#add('junegunn/seoul256.vim')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('tpope/vim-surround')
 call dein#add('ConradIrwin/vim-bracketed-paste')
-call dein#add('zchee/deoplete-jedi')
-call dein#add('fishbullet/deoplete-ruby')
-call dein#add('carlitux/deoplete-ternjs')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-fugitive')
 call dein#add('ctrlpvim/ctrlp.vim')
-" call dein#add('ludovicchabant/vim-gutentags')
 call dein#add('sheerun/vim-polyglot')
 call dein#add('joshdick/onedark.vim')
-call dein#add('tpope/vim-bundler')
-call dein#add('tpope/vim-rails')
 call dein#add('tpope/vim-abolish')
-call dein#add('majutsushi/tagbar')
-call dein#add('kchmck/vim-coffee-script')
 call dein#add('editorconfig/editorconfig-vim')
-call dein#add('neomake/neomake')
+" call dein#add('neomake/neomake')
 call dein#add('chase/vim-ansible-yaml')
-call dein#add('junegunn/vim-easy-align')
 call dein#add('godlygeek/tabular')
 call dein#add('907th/vim-auto-save')
 call dein#add('pangloss/vim-javascript')
@@ -53,10 +43,10 @@ call dein#add('mxw/vim-jsx')
 call dein#add('mattn/emmet-vim')
 call dein#add('alvan/vim-closetag')
 call dein#add('chrisbra/Colorizer')
-call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
 call dein#add('leafgarland/typescript-vim')
 call dein#add('ianks/vim-tsx')
-
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -74,8 +64,9 @@ endif
 
 "End dein Scripts-------------------------
 " Enable plugins
-call deoplete#enable()
-autocmd FileType markdown let g:deoplete#enable_at_startup=0
+
+" call deoplete#enable()
+" autocmd FileType markdown let g:deoplete#enable_at_startup=0
 
 syntax on
 colorscheme onedark
@@ -126,7 +117,7 @@ set noruler
 let mapleader="\<SPACE>"
 
 " deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 runtime macros/matchit.vim
 
@@ -179,7 +170,7 @@ endfunction
 
 nnoremap <leader>w :call BufferDelete()<cr>
 
-let g:airline_theme='simple'
+" let g:airline_theme='simple'
 hi Normal ctermbg=none
 set autoread
 nmap <leader>t :TagbarToggle<CR>
@@ -215,46 +206,46 @@ set undofile
 " let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
 " let g:neomake_typescript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
 
-let g:neomake_sass_sasslint_maker = {
-        \ 'exe': 'sass-lint',
-        \ 'args': ['--no-exit', '-v', '--format=compact'],
-        \ 'errorformat':
-            \ '%E%f: line %l\, col %c\, Error - %m,' .
-            \ '%W%f: line %l\, col %c\, Warning - %m',
-        \ } 
-let g:neomake_sass_enabled_makers = ['sasslint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-let g:neomake_typescript_eslint_maker = {
-    \ 'args': ['--format=compact'],
-    \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-    \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
-    \ 'cwd': '%:p:h',
-    \ 'output_stream': 'stdout',
-    \ }
- let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
- let g:neomake_typescript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-
-let g:neomake_typescript_enabled_makers = ['eslint']
-" let g:neomake_ruby_enabled_makers = ['mri']
-let g:neomake_python_flake8_maker = {
-    \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
-    \ 'errorformat':
-        \ '%E%f:%l: could not compile,%-Z%p^,' .
-        \ '%A%f:%l:%c: %t%n %m,' .
-        \ '%A%f:%l: %t%n %m,' .
-        \ '%-G%.%#',
-    \ }
-let g:neomake_python_mypy_maker = {
-    \ 'args': ['--ignore-missing-imports'],
-    \ 'errorformat':
-        \ '%E%f:%l: error: %m,' .
-        \ '%W%f:%l: warning: %m,' .
-        \ '%I%f:%l: note: %m',
-    \ }
-let g:neomake_python_enabled_makers = ['flake8', 'mypy']
-autocmd BufWritePost,BufEnter * Neomake
-autocmd InsertChange,TextChanged * update | Neomake
+" let g:neomake_sass_sasslint_maker = {
+"         \ 'exe': 'sass-lint',
+"         \ 'args': ['--no-exit', '-v', '--format=compact'],
+"         \ 'errorformat':
+"             \ '%E%f: line %l\, col %c\, Error - %m,' .
+"             \ '%W%f: line %l\, col %c\, Warning - %m',
+"         \ } 
+" let g:neomake_sass_enabled_makers = ['sasslint']
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" 
+" let g:neomake_typescript_eslint_maker = {
+"     \ 'args': ['--format=compact'],
+"     \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+"     \   '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
+"     \ 'cwd': '%:p:h',
+"     \ 'output_stream': 'stdout',
+"     \ }
+"  let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+"  let g:neomake_typescript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+" 
+" let g:neomake_typescript_enabled_makers = ['eslint']
+" " let g:neomake_ruby_enabled_makers = ['mri']
+" let g:neomake_python_flake8_maker = {
+"     \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
+"     \ 'errorformat':
+"         \ '%E%f:%l: could not compile,%-Z%p^,' .
+"         \ '%A%f:%l:%c: %t%n %m,' .
+"         \ '%A%f:%l: %t%n %m,' .
+"         \ '%-G%.%#',
+"     \ }
+" let g:neomake_python_mypy_maker = {
+"     \ 'args': ['--ignore-missing-imports'],
+"     \ 'errorformat':
+"         \ '%E%f:%l: error: %m,' .
+"         \ '%W%f:%l: warning: %m,' .
+"         \ '%I%f:%l: note: %m',
+"     \ }
+" let g:neomake_python_enabled_makers = ['flake8', 'mypy']
+" autocmd BufWritePost,BufEnter * Neomake
+" autocmd InsertChange,TextChanged * update | Neomake
 
 " Folding
 set foldcolumn=2
@@ -268,7 +259,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-:let g:colorizer_auto_filetype='scss,jsx,js,sass,css,html'
+:let g:colorizer_auto_filetype='scss,jsx,js,sass,css,html,tsx,ts,py'
 
 :set mouse=a
 
