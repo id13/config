@@ -38,3 +38,4 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH/:$ANDROID_HOME/platform-tools
 # export QT_WAYLAND_FORCE_DPI="200"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
