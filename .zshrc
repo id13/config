@@ -39,15 +39,29 @@ bindkey "^I" expand-or-complete-with-dots
 zstyle ':completion:*:default' list-colors ''
 
 source $HOME/.zshenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
 
 if [[ -s "${HOME}/.rvm/scripts/rvm" ]]; then
 	source $HOME/.rvm/scripts/rvm
 fi
 
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(direnv hook zsh)"
 
 source $HOME/.zshfunc
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jd/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jd/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jd/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jd/google-cloud-sdk/completion.zsh.inc'; fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+# Force colemak on graphic apps
+if [ -s '/home/jd/colemak-1.0' ]; then eval "setxkbmap us; xmodmap /home/jd/colemak-1.0/xmodmap/xmodmap.colemak && xset r 66"; fi
+
