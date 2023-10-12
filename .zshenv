@@ -41,3 +41,5 @@ export PATH=$PATH/:$ANDROID_HOME/platform-tools
 #export QT_WAYLAND_FORCE_DPI="200"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
+export FZF_DEFAULT_OPTS="--exact --padding=1 --margin 10% --layout=reverse --border=double"
+export BAT_THEME="OneHalfDark"
