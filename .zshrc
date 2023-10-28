@@ -6,8 +6,8 @@
 
 # Source Prezto.
 
-LC_CTYPE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
+# LC_CTYPE=en_US.UTF-8
+# LC_ALL=en_US.UTF-8
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -65,3 +65,4 @@ if [ -s '/home/jd/colemak-1.0' ]; then eval "setxkbmap us; xmodmap /home/jd/cole
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

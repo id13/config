@@ -6,8 +6,6 @@ export USER="jd"
 export EDITOR="vim"
 #export GDK_SCALE=2
 #export GDK_DPI_SCALE=0.5
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$HOME/.exenv/bin:$PATH"
@@ -41,5 +39,6 @@ export PATH=$PATH/:$ANDROID_HOME/platform-tools
 #export QT_WAYLAND_FORCE_DPI="200"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
-export FZF_DEFAULT_OPTS="--exact --padding=1 --margin 10% --layout=reverse --border=double"
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'left:40%' --exact --padding=1 --margin 10% --layout=reverse --border=double --preview 'bat --color=always --style=header,numbers --highlight-line {2} {1}'"
 export BAT_THEME="OneHalfDark"
+. "$HOME/.cargo/env"
