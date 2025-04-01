@@ -56,3 +56,5 @@
 	smudge = git-lfs smudge -- %f
 [pull]
 	rebase = false
+[diff "sopsdiffer"]
+	textconv = sops -d

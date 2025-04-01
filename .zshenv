@@ -42,3 +42,7 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'left:40%' --exact --padding=1 --margin 10% --layout=reverse --border=double --preview 'bat --color=always --style=header,numbers --highlight-line {2} {1}'"
 export BAT_THEME="OneHalfDark"
 . "$HOME/.cargo/env"
+export LDFLAGS="-L/opt/homebrew/opt/protobuf@21/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/protobuf@21/include"
+export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
+export JAVA_HOME="/opt/homebrew/Cellar/openjdk@11/11.0.24/libexec/openjdk.jdk/Contents/Home"

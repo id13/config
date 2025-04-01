@@ -66,3 +66,7 @@ if [ -s '/home/jd/colemak-1.0' ]; then eval "setxkbmap us; xmodmap /home/jd/cole
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+export PATH="/opt/homebrew/opt/protobuf@21/bin:$PATH"
+eval "$(zoxide init zsh)"
