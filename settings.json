@@ -1,0 +1,294 @@
+{
+    "workbench.colorTheme": "GitHub Dark Default",
+    "redhat.telemetry.enabled": false,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path.windows": "C:\\Users\\jdfiq\\.vs-kubernetes\\tools\\helm\\windows-amd64\\helm.exe",
+        "vscode-kubernetes.minikube-path.windows": "C:\\Users\\jdfiq\\.vs-kubernetes\\tools\\minikube\\windows-amd64\\minikube.exe",
+        "vs-kubernetes.crd-code-completion": "enabled",
+        "vscode-kubernetes.helm-path-mac": "/Users/jd/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+        "vscode-kubernetes.kubectl-path-mac": "/Users/jd/.vs-kubernetes/tools/kubectl/kubectl",
+        "vscode-kubernetes.minikube-path-mac": "/Users/jd/.vs-kubernetes/tools/minikube/darwin-arm64/minikube"
+    },
+    "files.autoSave": "afterDelay",
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "files.exclude": {
+        ".direnv": true,
+        "**/__pycache__": true,
+        "node_modules": true
+    },
+    "python.linting.ignorePatterns": [
+        "**/site-packages/**/*.py",
+        ".vscode/*.py",
+        "__pycache__"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "git.autofetch": true,
+    "editor.wordWrap": "on",
+    "vim.useSystemClipboard": true,
+    "vim.handleKeys": {
+        "<C-S-w>": false,
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "vim.hlsearch": true,
+    "gitlens.showWelcomeOnInstall": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.currentLine.scrollable": false,
+    "telemetry.telemetryLevel": "crash",
+    "git.suggestSmartCommit": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "settingsSync.ignoredExtensions": [
+        "oderwat.indent-rainbow",
+        "butchland.vscode-dbt-bigquery-power-user",
+        "2gua.rainbow-brackets",
+        "minodisk.bigquery-runner",
+        "mtxr.sqltools",
+        "evidence.sqltools-bigquery-driver",
+        "vue.volar"
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false,
+        "yaml": true
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "files.associations": {
+        "*.sql": "sql"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "errorLens.excludeBySource": [
+        "Pylance(reportGeneralTypeIssues)"
+    ],
+    "output.smartScroll.enabled": false,
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.openRepositoryInParentFolders": "always",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "vim.leader": "<Space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "5",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "5",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "j"
+            ],
+            "after": [
+                "J"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "t"
+            ],
+            "commands": [
+                ":tabnew"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "n"
+            ],
+            "commands": [
+                ":tabnext"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "p"
+            ],
+            "commands": [
+                ":tabprev"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t",
+                "o"
+            ],
+            "commands": [
+                ":tabo"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "/"
+            ],
+            "commands": [
+                ":noh"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "p"
+            ],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.gotoSymbol"
+            ]
+        }
+    ],
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen",
+        "-workbench.action.showCommands",
+        "-workbench.action.focusFilesExplorer"
+    ],
+    "terminal.integrated.defaultLocation": "view",
+    "terminal.integrated.enableImages": true,
+    "terminal.integrated.gpuAcceleration": "on",
+    "terminal.integrated.fontWeight": "normal",
+    "terminal.external.windowsExec": "%LocalAppData%\\Microsoft\\WindowsApps\\wt.exe",
+    "terminal.integrated.splitCwd": "workspaceRoot",
+    "workbench.settings.applyToAllProfiles": [
+        "terminal.integrated.cwd"
+    ],
+    "python.terminal.activateEnvironment": false,
+    "editor.fontFamily": "Hack Nerd Font,Consolas, 'Courier New', monospace",
+    "editor.minimap.enabled": false,
+    "window.density.editorTabHeight": "compact",
+    "terminal.integrated.confirmOnKill": "never",
+    "zenMode.hideActivityBar": false,
+    "explorer.autoRevealExclude": {
+        "**/.direnv": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "accessibility.dimUnfocused.enabled": true,
+    "find-it-faster.general.batTheme": "ansi-dark",
+    "find-it-faster.general.showMaximizedTerminal": true,
+    "find-it-faster.findWithinFiles.previewCommand": "bat --color=always --style=header,numbers --highlight-line {2} {1}",
+    "find-it-faster.findFiles.previewCommand": "bat --color=always --style=header,numbers {}",
+    "find-it-faster.findWithinFiles.previewWindowConfig": "left,50%,+{2}+3/3,~3,border-right",
+    "find-it-faster.findFiles.previewWindowConfig": "left,50%,+{2}+3/3,~3,border-right",
+    "search.exclude": {
+        "**/.direnv": true,
+        "**/.git": true,
+        "**/.next": true,
+        "**/.pytest_cache": true,
+        "**/*.log": true
+    },
+    "find-it-faster.findWithinFiles.fuzzRipgrepQuery": true,
+    "editor.accessibilitySupport": "off",
+    "accessibility.dimUnfocused.opacity": 0.8,
+    "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",
+    "rust-analyzer.files.watcher": "server",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+    "editor.detectIndentation": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "notebook.output.scrolling": true,
+    "terminal.integrated.macOptionIsMeta": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontSize": 12,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "sqltools.highlightQuery": false,
+    "java.completion.favoriteStaticMembers": [
+        "org.junit.Assert.*",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.junit.jupiter.api.Assumptions.*",
+        "org.junit.jupiter.api.DynamicContainer.*",
+        "org.junit.jupiter.api.DynamicTest.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*",
+        "org.mockito.Answers.*"
+    ],
+    "java.maven.downloadSources": true,
+    "java.maven.updateSnapshots": true,
+    "java.gradle.buildServer.enabled": "off",
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.26/libexec/openjdk.jdk/Contents/Home",
+    "python.defaultInterpreterPath": "/Users/jd/repos/gorgias/gorgias/.direnv/python-3.10",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "gitlens.launchpad.indicator.enabled": false,
+    "github.copilot.chat.completionContext.typescript.mode": "on",
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "github.copilot.chat.generateTests.codeLens": true,
+    "github.copilot.chat.edits.temporalContext.enabled": true,
+    "github.copilot.chat.newWorkspaceCreation.enabled": true,
+    "github.copilot.chat.languageContext.typescript.enabled": true,
+    "github.copilot.chat.search.semanticTextResults": true,
+    "github.copilot.chat.scopeSelection": true,
+    "github.copilot.chat.codesearch.enabled": true,
+    "cursor.cpp.disabledLanguages": [
+        "scminput"
+    ],
+    "cursor.composer.shouldAllowCustomModes": true,
+    "altimate.onboardedMcpServer": true,
+    "explorer.confirmDelete": false,
+    "diffEditor.maxComputationTime": 0,
+    "editor.tabSize": 2,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "workbench.colorCustomizations": {
+      "tab.activeBackground": "#ffffff",
+      "tab.activeForeground": "#000",
+      "tab.activeBorder": "#fff",
+      "tab.activeBorderTop": "#fff",
+      "tab.unfocusedActiveBackground": "#000",
+      "tab.unfocusedActiveForeground": "#6e7681",
+      "tab.inactiveForeground": "#6e7681"
+    }
+}
