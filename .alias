@@ -14,7 +14,6 @@ alias rrdb='rake db:drop; rake db:create; rake db:migrate; rake db:migrate RAILS
 alias gbri="git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n"
 alias spotify="spotify --force-device-scale-factor=1.5 > /dev/null 2>&1 &"
 alias yaourt="yaourt --noconfirm"
-alias cat="bat"
 
 # Filesystem
 alias ..='cd ..'            # Go up one directory

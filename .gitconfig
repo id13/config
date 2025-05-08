@@ -13,7 +13,7 @@
 
 [alias]
 	co = checkout
-	ci = commit
+	ci = commit -S
 	st = status
 	br = branch
 	mergef = merge --ff-only

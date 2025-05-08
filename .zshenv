@@ -45,4 +45,3 @@ export BAT_THEME="OneHalfDark"
 export LDFLAGS="-L/opt/homebrew/opt/protobuf@21/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/protobuf@21/include"
 export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
-export JAVA_HOME="/opt/homebrew/Cellar/openjdk@11/11.0.24/libexec/openjdk.jdk/Contents/Home"
