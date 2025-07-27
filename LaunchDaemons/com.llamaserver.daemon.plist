@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
+	<key>Label</key>
+	<string>com.llama-server</string>
+	<key>LimitLoadToSessionType</key>
+	<array>
+		<string>Aqua</string>
+		<string>Background</string>
+		<string>LoginWindow</string>
+		<string>StandardIO</string>
+		<string>System</string>
+	</array>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/llama-server</string>
+		<string>--host</string>
+		<string>127.0.0.1</string>
+		<string>--port</string>
+		<string>8012</string>
+    		<string>--log-file</string>
+    		<string>/opt/homebrew/var/log/llama-server-debug.log</string>
+		<string>--hf-repo</string>
+		<string>Qwen/Qwen2.5-Coder-7B-Instruct-GGUF</string>
+		<string>--hf-file</string>
+		<string>qwen2.5-coder-7b-instruct-q4_k_m.gguf</string>
+		<string>-ngl</string>
+		<string>-1</string>
+		<string>-t</string>
+		<string>8</string>
+		<string>--mlock</string>
+		<string>-fa</string>
+	</array>
+<key>EnvironmentVariables</key>
+<dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>/Users/jd</string>
+    <key>USER</key>
+    <string>jd</string>
+    <key>TMPDIR</key>
+    <string>/tmp</string>
+    <key>XDG_CACHE_HOME</key>
+    <string>/Users/jd/.cache</string>
+</dict>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/opt/homebrew/var/log/llama-server.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/homebrew/var/log/llama-server.log</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/jd</string>
+</dict>
+</plist>

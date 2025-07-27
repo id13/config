@@ -4,57 +4,48 @@
 [diff]
 	renames = true
 	submodule = log
+        tool = kitty
+	guitool = kitty.gui
 
-[color]
-	ui = true
+[diff "sopsdiffer"]
+	textconv = sops -d
+
+[difftool]
+    prompt = false
+    trustExitCode = true
+
+[difftool "kitty"]
+    cmd = kitten diff $LOCAL $REMOTE
+
+[difftool "kitty.gui"]
+    cmd = kitten diff $LOCAL $REMOTE
 
 [push]
 	default = current
 
 [alias]
+	df = difftool --no-symlinks --dir-diff
 	co = checkout
 	ci = commit -S
 	st = status
 	br = branch
-	mergef = merge --ff-only
-  smf = submodule foreach
-  sm = submodule
-  chlg = log master..release --pretty=format:'- %s' --reverse
+	smf = submodule foreach
+	sm = submodule
+	chlg = log master..release --pretty=format:'- %s' --reverse
 	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
 	hist = log --graph --date=short --pretty=tformat:'%Cred%h%Creset %Cgreen%ad%Creset | %C(auto)%d%Creset %s %Cgreen(%an)%Creset' --all -n20
 	hista = log --graph --date=short --pretty=tformat:'%Cred%h%Creset %Cgreen%ad%Creset | %C(auto)%d%Creset %s %Cgreen(%an)%Creset' --all
 	graph = log --oneline --graph
-	type = cat-file -t
-	dump = cat-file -p
-	last-version = checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
 [core]
 	editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
 	eol = lf
-[diff "ansible-vault"]
-        textconv = ansible-vault view
-        cachetextconv = false
-[merge "ansible-vault"]
-    name = ansible-vault merge driver
-    driver = $HOME/bin/ansible-vault-merge -- %O %A %B %P
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+
 [pull]
-	rebase = false
-[diff "sopsdiffer"]
-	textconv = sops -d
+	rebase = true
