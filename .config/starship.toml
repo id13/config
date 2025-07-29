@@ -8,6 +8,8 @@ $nodejs\
 $line_break\
 $character"""
 
+add_newline = false
+
 [directory]
 style = "blue"
 

@@ -430,18 +430,18 @@ require('lazy').setup({
             '%.zip',
           },
           -- Other useful defaults
-          hidden = true, -- This might not work in all contexts
+          hidden = true, -- this might not work in all contexts
         },
         pickers = {
           find_files = {
-            -- Show hidden files
+            -- show hidden files
             hidden = true,
-            -- Respect .gitignore
+            -- respect .gitignore
             follow = true,
           },
           live_grep = {
             -- `additional_args` is used to pass additional arguments to the underlying
-            -- command. In this case, we're adding the `--hidden` flag to the `rg`
+            -- command. in this case, we're adding the `--hidden` flag to the `rg`
             -- command.
             additional_args = function(opts)
               return vim.list_extend(opts.additional_args or {}, { '--hidden' })
@@ -455,34 +455,34 @@ require('lazy').setup({
         },
       }
 
-      -- Enable Telescope extensions if they are installed
+      -- enable telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      -- See `:help telescope.builtin`
+      -- see `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[s]earch [f]iles' })
+      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
+      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
+      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
 
-      -- Slightly advanced example of overriding default behavior and theme
+      -- slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+        -- you can pass additional configuration to telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
           previewer = false,
         })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+      end, { desc = '[/] fuzzily search in current buffer' })
 
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
+      -- it's also possible to pass additional configuration options.
+      --  see `:help telescope.builtin.live_grep()` for information about particular keys
       vim.keymap.set('n', '<leader>s/', function()
         builtin.live_grep {
           grep_open_files = true,
@@ -1109,21 +1109,6 @@ require('lazy').setup({
     end,
   },
   {
-    'knubie/vim-kitty-navigator',
-    build = 'cp ./*.py ~/.config/kitty/',
-    config = function()
-      vim.g.kitty_navigator_no_mappings = 1
-
-      local opts = { silent = true }
-      local keymap = vim.keymap.set
-
-      keymap('n', '<C-`>n', ':KittyNavigateLeft<CR>', opts)
-      keymap('n', '<C-`>e', ':KittyNavigateDown<CR>', opts)
-      keymap('n', '<C-`>u', ':KittyNavigateUp<CR>', opts)
-      keymap('n', '<C-`>i', ':KittyNavigateRight<CR>', opts)
-    end,
-  },
-  {
     'ggml-org/llama.vim',
     init = function()
       vim.g.llama_config = {
@@ -1137,6 +1122,45 @@ require('lazy').setup({
         ring_scope = 2048,
         show_info = 0,
       }
+    end,
+  },
+  {
+    'numToStr/Navigator.nvim',
+    config = function()
+      require('Navigator').setup {
+        -- Disable default keybindings
+        auto_save = nil,
+        disable_on_zoom = true,
+      }
+
+      -- Create the mappings for our special sequence
+      -- Alt+\ followed by n/u/e/i
+      local opts = { noremap = true, silent = true }
+
+      -- We need to use a special approach to map two-key sequences
+      vim.cmd [[
+        " Map Alt+\ followed by direction keys
+        nnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
+        nnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
+        nnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
+        nnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        
+        " Also map for other modes
+        tnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
+        tnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
+        tnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
+        tnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        
+        inoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
+        inoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
+        inoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
+        inoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        
+        vnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
+        vnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
+        vnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
+        vnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+      ]]
     end,
   },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the

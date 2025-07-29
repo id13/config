@@ -4,27 +4,14 @@
 [diff]
 	renames = true
 	submodule = log
-        tool = kitty
-	guitool = kitty.gui
 
 [diff "sopsdiffer"]
 	textconv = sops -d
-
-[difftool]
-    prompt = false
-    trustExitCode = true
-
-[difftool "kitty"]
-    cmd = kitten diff $LOCAL $REMOTE
-
-[difftool "kitty.gui"]
-    cmd = kitten diff $LOCAL $REMOTE
 
 [push]
 	default = current
 
 [alias]
-	df = difftool --no-symlinks --dir-diff
 	co = checkout
 	ci = commit -S
 	st = status
@@ -40,6 +27,17 @@
 [core]
 	editor = vim
 	eol = lf
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	dark = true      # or light = true, or omit for auto-detection
+	side-by-side = true
+[merge]
+	conflictstyle = zdiff3
 
 [filter "lfs"]
 	process = git-lfs filter-process
