@@ -106,7 +106,7 @@ set -gx BAT_THEME TwoDark
 set -gx BAT_STYLE "numbers,changes,header"
 
 # Ripgrep
-set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
+# set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/config
 
 # GPG
 set -gx GPG_TTY (tty)

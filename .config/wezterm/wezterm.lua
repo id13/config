@@ -14,7 +14,7 @@ config.window_padding = {
 	top = 4,
 	bottom = 2,
 }
-config.window_close_confirmation = "NeverPrompt"
+config.window_close_confirmation = "AlwaysPrompt"
 config.quit_when_all_windows_are_closed = true
 
 -- Tab bar configuration
@@ -40,9 +40,19 @@ config.use_fancy_tab_bar = false
 
 -- Custom tab bar formatting with more padding and better styling
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local title = tab.tab_title
-	if #title == 0 then
-		title = tab.active_pane.title
+	local pane = tab.active_pane
+	local cwd_uri = pane.current_working_dir
+	local title = ""
+	
+	if cwd_uri then
+		local cwd = cwd_uri.file_path or cwd_uri
+		title = cwd:match("([^/]+)/?$") or cwd
+	else
+		-- Fall back to pane title
+		title = tab.tab_title
+		if #title == 0 then
+			title = tab.active_pane.title
+		end
 	end
 
 	-- Truncate title if too long

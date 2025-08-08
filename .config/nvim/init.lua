@@ -98,6 +98,8 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.o.expandtab = true
+
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -400,7 +402,7 @@ require('lazy').setup({
       -- This opens a window that shows you all of the keymaps for the current
       -- Telescope picker. This is really useful to discover what Telescope can
       -- do as well as how to actually do it!
-
+      --
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
@@ -443,8 +445,9 @@ require('lazy').setup({
             -- `additional_args` is used to pass additional arguments to the underlying
             -- command. in this case, we're adding the `--hidden` flag to the `rg`
             -- command.
-            additional_args = function(opts)
-              return vim.list_extend(opts.additional_args or {}, { '--hidden' })
+
+            additional_args = function()
+              return { '--hidden', '--glob', '!**/.git/*' }
             end,
           },
         },
@@ -1097,15 +1100,13 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
   {
-    'mikesmithgh/kitty-scrollback.nvim',
-    enabled = true,
-    lazy = true,
-    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
-    event = { 'User KittyScrollbackLaunch' },
-    -- version = '*', -- latest stable version, may have breaking changes if major version changed
-    -- version = '^6.0.0', -- pin major version, include fixes and features that do not have breaking changes
+    'toppair/peek.nvim',
+    event = { 'VeryLazy' },
+    build = 'deno task --quiet build:fast',
     config = function()
-      require('kitty-scrollback').setup()
+      require('peek').setup()
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
     end,
   },
   {
