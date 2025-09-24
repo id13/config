@@ -34,6 +34,12 @@ config.window_frame = {
 
 config.color_scheme = "Tokyo Night"
 
+-- Make active pane much more visible
+config.inactive_pane_hsb = {
+	saturation = 0.5,
+	brightness = 0.5,
+}
+
 -- Increase tab bar height
 config.tab_bar_at_bottom = false
 config.use_fancy_tab_bar = false
@@ -43,7 +49,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local pane = tab.active_pane
 	local cwd_uri = pane.current_working_dir
 	local title = ""
-	
+
 	if cwd_uri then
 		local cwd = cwd_uri.file_path or cwd_uri
 		title = cwd:match("([^/]+)/?$") or cwd
@@ -115,11 +121,11 @@ local function split_nav(key, direction)
 		mods = "SUPER", -- or 'CMD' on macOS
 		action = wezterm.action_callback(function(win, pane)
 			if is_vim(pane) then
-				-- Send a complex key sequence: Alt+\ followed by the key
+				-- Send a complex key sequence: Alt+$ followed by the key
 				-- This is extremely unlikely to conflict with any existing mappings
 				win:perform_action({
 					Multiple = {
-						{ SendKey = { key = "\\", mods = "ALT" } },
+						{ SendKey = { key = "$", mods = "ALT" } },
 						{ SendKey = { key = key } },
 					},
 				}, pane)

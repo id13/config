@@ -360,144 +360,544 @@ require('lazy').setup({
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-  { -- Fuzzy Finder (files, lsp, etc)
-    'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
-        'nvim-telescope/telescope-fzf-native.nvim',
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        build = 'make',
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      bigfile = { enabled = true },
+      dashboard = { enabled = true },
+      explorer = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
+      image = { enabled = true },
+      picker = {
+        sources = {
+          explorer = {
+            layout = {
+              layout = {
+                width = 80,
+              },
+            },
+          },
+        },
+        win = {
+          -- input window
+          input = {
+            keys = {
+              -- to close the picker on ESC instead of going to normal mode,
+              -- add the following keymap to your config
+              -- ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ['/'] = 'toggle_focus',
+              ['<c-Down>'] = { 'history_forward', mode = { 'i', 'n' } },
+              ['<c-Up>'] = { 'history_back', mode = { 'i', 'n' } },
+              ['<c-c>'] = { 'cancel', mode = 'i' },
+              ['<c-w>'] = { '<c-s-w>', mode = { 'i' }, expr = true, desc = 'delete word' },
+              ['<CR>'] = { 'confirm', mode = { 'n', 'i' } },
+              ['<Down>'] = { 'list_down', mode = { 'i', 'n' } },
+              ['<Esc>'] = 'cancel',
+              ['<s-CR>'] = { { 'pick_win', 'jump' }, mode = { 'n', 'i' } },
+              ['<s-Tab>'] = { 'select_and_prev', mode = { 'i', 'n' } },
+              ['<Tab>'] = { 'select_and_next', mode = { 'i', 'n' } },
+              ['<Up>'] = { 'list_up', mode = { 'i', 'n' } },
+              ['<a-d>'] = { 'inspect', mode = { 'n', 'i' } },
+              ['<a-f>'] = { 'toggle_follow', mode = { 'i', 'n' } },
+              ['<a-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } },
+              ['<a-i>'] = { 'toggle_ignored', mode = { 'i', 'n' } },
+              ['<a-m>'] = { 'toggle_maximize', mode = { 'i', 'n' } },
+              ['<a-p>'] = { 'toggle_preview', mode = { 'i', 'n' } },
+              ['<a-w>'] = { 'cycle_win', mode = { 'i', 'n' } },
+              ['<c-a>'] = { 'select_all', mode = { 'n', 'i' } },
+              ['<c-b>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+              ['<c-d>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+              ['<c-f>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+              ['<c-g>'] = { 'toggle_live', mode = { 'i', 'n' } },
+              ['<c-j>'] = { 'list_down', mode = { 'i', 'n' } },
+              ['<c-k>'] = { 'list_up', mode = { 'i', 'n' } },
+              ['<c-e>'] = { 'list_down', mode = { 'i', 'n' } },
+              ['<c-u>'] = { 'list_up', mode = { 'i', 'n' } },
+              ['<c-q>'] = { 'qflist', mode = { 'i', 'n' } },
+              ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } },
+              ['<c-t>'] = { 'tab', mode = { 'n', 'i' } },
+              ['<c-n>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+              ['<c-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
+              ['<c-r>#'] = { 'insert_alt', mode = 'i' },
+              ['<c-r>%'] = { 'insert_filename', mode = 'i' },
+              ['<c-r><c-a>'] = { 'insert_cWORD', mode = 'i' },
+              ['<c-r><c-f>'] = { 'insert_file', mode = 'i' },
+              ['<c-r><c-l>'] = { 'insert_line', mode = 'i' },
+              ['<c-r><c-p>'] = { 'insert_file_full', mode = 'i' },
+              ['<c-r><c-w>'] = { 'insert_cword', mode = 'i' },
+              ['<c-w>H'] = 'layout_left',
+              ['<c-w>J'] = 'layout_bottom',
+              ['<c-w>K'] = 'layout_top',
+              ['<c-w>L'] = 'layout_right',
+              ['?'] = 'toggle_help_input',
+              ['G'] = 'list_bottom',
+              ['gg'] = 'list_top',
+              ['q'] = 'close',
+            },
+            b = {
+              minipairs_disable = true,
+            },
+          },
+          -- result list window
+          list = {
+            keys = {
+              ['/'] = 'toggle_focus',
+              ['<2-LeftMouse>'] = 'confirm',
+              ['<CR>'] = 'confirm',
+              ['<Down>'] = 'list_down',
+              ['<Esc>'] = 'cancel',
+              ['<S-CR>'] = { { 'pick_win', 'jump' } },
+              ['<S-Tab>'] = { 'select_and_prev', mode = { 'n', 'x' } },
+              ['<Tab>'] = { 'select_and_next', mode = { 'n', 'x' } },
+              ['<Up>'] = 'list_up',
+              ['<a-d>'] = 'inspect',
+              ['<a-f>'] = 'toggle_follow',
+              ['<a-h>'] = 'toggle_hidden',
+              ['<a-i>'] = 'toggle_ignored',
+              ['<a-m>'] = 'toggle_maximize',
+              ['<a-p>'] = 'toggle_preview',
+              ['<a-w>'] = 'cycle_win',
+              ['<c-a>'] = 'select_all',
+              ['<c-b>'] = 'preview_scroll_up',
+              ['<c-d>'] = 'list_scroll_down',
+              ['<c-f>'] = 'preview_scroll_down',
+              ['<c-j>'] = 'list_down',
+              ['<c-k>'] = 'list_up',
+              ['<c-e>'] = 'list_down',
+              ['<c-u>'] = 'list_up',
+              ['<c-q>'] = 'qflist',
+              ['<c-s>'] = 'edit_split',
+              ['<c-t>'] = 'tab',
+              ['<c-n>'] = 'list_scroll_up',
+              ['<c-v>'] = 'edit_vsplit',
+              ['<c-w>H'] = 'layout_left',
+              ['<c-w>J'] = 'layout_bottom',
+              ['<c-w>K'] = 'layout_top',
+              ['<c-w>L'] = 'layout_right',
+              ['?'] = 'toggle_help_list',
+              ['G'] = 'list_bottom',
+              ['gg'] = 'list_top',
+              ['i'] = 'focus_input',
+              ['q'] = 'close',
+              ['zb'] = 'list_scroll_bottom',
+              ['zt'] = 'list_scroll_top',
+              ['zz'] = 'list_scroll_center',
+            },
+          },
+        },
+        formatters = {
+          text = {
+            ft = nil, ---@type string? filetype for highlighting
+          },
+          file = {
+            filename_first = false, -- display filename before the file path
+            truncate = 80, -- truncate the file path to (roughly) this length
+            filename_only = false, -- only show the filename
+            icon_width = 2, -- width of the icon (in characters)
+            git_status_hl = true, -- use the git status highlight group for the filename
+          },
+          selected = {
+            show_always = false, -- only show the selected column when there are multiple selections
+            unselected = true, -- use the unselected icon for unselected items
+          },
+          severity = {
+            icons = true, -- show severity icons
+            level = false, -- show severity level
+            ---@type "left"|"right"
+            pos = 'left', -- position of the diagnostics
+          },
+        },
       },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      gitbrowse = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      scope = { enabled = true },
+      scroll = { enabled = false },
+      statuscolumn = { enabled = false },
+      words = { enabled = true },
     },
-    config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use Telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of `help_tags` options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in Telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-      --
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        defaults = {
-          -- Show hidden files but exclude certain directories
-          file_ignore_patterns = {
-            '%.git/',
-            'node_modules/',
-            '%.DS_Store',
-            '%.pyc',
-            '__pycache__/',
-            '%.o',
-            '%.a',
-            '%.out',
-            '%.class',
-            '%.pdf',
-            '%.mkv',
-            '%.mp4',
-            '%.zip',
-          },
-          -- Other useful defaults
-          hidden = true, -- this might not work in all contexts
-        },
-        pickers = {
-          find_files = {
-            -- show hidden files
-            hidden = true,
-            -- respect .gitignore
-            follow = true,
-          },
-          live_grep = {
-            -- `additional_args` is used to pass additional arguments to the underlying
-            -- command. in this case, we're adding the `--hidden` flag to the `rg`
-            -- command.
-
-            additional_args = function()
-              return { '--hidden', '--glob', '!**/.git/*' }
-            end,
-          },
-        },
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          },
-        },
-      }
-
-      -- enable telescope extensions if they are installed
-      pcall(require('telescope').load_extension, 'fzf')
-      pcall(require('telescope').load_extension, 'ui-select')
-
-      -- see `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[s]earch [f]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
-
-      -- slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '<leader>/', function()
-        -- you can pass additional configuration to telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] fuzzily search in current buffer' })
-
-      -- it's also possible to pass additional configuration options.
-      --  see `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[S]earch [/] in Open Files' })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
-    end,
+    keys = {
+      -- Top Pickers & Explorer
+      {
+        '<leader><space>',
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = 'Smart Find Files',
+      },
+      {
+        '<leader>,',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
+      },
+      {
+        '<leader>/',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = 'Grep',
+      },
+      {
+        '<leader>:',
+        function()
+          Snacks.picker.command_history()
+        end,
+        desc = 'Command History',
+      },
+      {
+        '<leader>n',
+        function()
+          Snacks.picker.notifications()
+        end,
+        desc = 'Notification History',
+      },
+      {
+        '<leader>e',
+        function()
+          Snacks.explorer()
+        end,
+        desc = 'File Explorer',
+      },
+      -- find
+      {
+        '<leader>fb',
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = 'Buffers',
+      },
+      {
+        '<leader>fc',
+        function()
+          Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+        end,
+        desc = 'Find Config File',
+      },
+      {
+        '<leader>ff',
+        function()
+          Snacks.picker.files()
+        end,
+        desc = 'Find Files',
+      },
+      {
+        '<leader>fg',
+        function()
+          Snacks.picker.git_files()
+        end,
+        desc = 'Find Git Files',
+      },
+      {
+        '<leader>fp',
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = 'Projects',
+      },
+      {
+        '<leader>fr',
+        function()
+          Snacks.picker.recent()
+        end,
+        desc = 'Recent',
+      },
+      -- git
+      {
+        '<leader>gb',
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = 'Git Branches',
+      },
+      {
+        '<leader>gl',
+        function()
+          Snacks.picker.git_log()
+        end,
+        desc = 'Git Log',
+      },
+      {
+        '<leader>gL',
+        function()
+          Snacks.picker.git_log_line()
+        end,
+        desc = 'Git Log Line',
+      },
+      {
+        '<leader>gs',
+        function()
+          Snacks.picker.git_status()
+        end,
+        desc = 'Git Status',
+      },
+      {
+        '<leader>gS',
+        function()
+          Snacks.picker.git_stash()
+        end,
+        desc = 'Git Stash',
+      },
+      {
+        '<leader>gd',
+        function()
+          Snacks.picker.git_diff()
+        end,
+        desc = 'Git Diff (Hunks)',
+      },
+      {
+        '<leader>gf',
+        function()
+          Snacks.picker.git_log_file()
+        end,
+        desc = 'Git Log File',
+      },
+      -- Grep
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = 'Buffer Lines',
+      },
+      {
+        '<leader>sB',
+        function()
+          Snacks.picker.grep_buffers()
+        end,
+        desc = 'Grep Open Buffers',
+      },
+      {
+        '<leader>sg',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = 'Grep',
+      },
+      {
+        '<leader>sw',
+        function()
+          Snacks.picker.grep_word()
+        end,
+        desc = 'Visual selection or word',
+        mode = { 'n', 'x' },
+      },
+      -- search
+      {
+        '<leader>s"',
+        function()
+          Snacks.picker.registers()
+        end,
+        desc = 'Registers',
+      },
+      {
+        '<leader>s/',
+        function()
+          Snacks.picker.search_history()
+        end,
+        desc = 'Search History',
+      },
+      {
+        '<leader>sa',
+        function()
+          Snacks.picker.autocmds()
+        end,
+        desc = 'Autocmds',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = 'Buffer Lines',
+      },
+      {
+        '<leader>sc',
+        function()
+          Snacks.picker.command_history()
+        end,
+        desc = 'Command History',
+      },
+      {
+        '<leader>sC',
+        function()
+          Snacks.picker.commands()
+        end,
+        desc = 'Commands',
+      },
+      {
+        '<leader>sd',
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = 'Diagnostics',
+      },
+      {
+        '<leader>sD',
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
+        desc = 'Buffer Diagnostics',
+      },
+      {
+        '<leader>sh',
+        function()
+          Snacks.picker.help()
+        end,
+        desc = 'Help Pages',
+      },
+      {
+        '<leader>sH',
+        function()
+          Snacks.picker.highlights()
+        end,
+        desc = 'Highlights',
+      },
+      {
+        '<leader>si',
+        function()
+          Snacks.picker.icons()
+        end,
+        desc = 'Icons',
+      },
+      {
+        '<leader>sj',
+        function()
+          Snacks.picker.jumps()
+        end,
+        desc = 'Jumps',
+      },
+      {
+        '<leader>sk',
+        function()
+          Snacks.picker.keymaps()
+        end,
+        desc = 'Keymaps',
+      },
+      {
+        '<leader>sl',
+        function()
+          Snacks.picker.loclist()
+        end,
+        desc = 'Location List',
+      },
+      {
+        '<leader>sm',
+        function()
+          Snacks.picker.marks()
+        end,
+        desc = 'Marks',
+      },
+      {
+        '<leader>sM',
+        function()
+          Snacks.picker.man()
+        end,
+        desc = 'Man Pages',
+      },
+      {
+        '<leader>sp',
+        function()
+          Snacks.picker.lazy()
+        end,
+        desc = 'Search for Plugin Spec',
+      },
+      {
+        '<leader>sq',
+        function()
+          Snacks.picker.qflist()
+        end,
+        desc = 'Quickfix List',
+      },
+      {
+        '<leader>r',
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = 'Resume',
+      },
+      {
+        '<leader>su',
+        function()
+          Snacks.picker.undo()
+        end,
+        desc = 'Undo History',
+      },
+      {
+        '<leader>uC',
+        function()
+          Snacks.picker.colorschemes()
+        end,
+        desc = 'Colorschemes',
+      },
+      -- LSP
+      {
+        'gd',
+        function()
+          Snacks.picker.lsp_definitions()
+        end,
+        desc = 'Goto Definition',
+      },
+      {
+        'gD',
+        function()
+          Snacks.picker.lsp_declarations()
+        end,
+        desc = 'Goto Declaration',
+      },
+      {
+        'gr',
+        function()
+          Snacks.picker.lsp_references()
+        end,
+        nowait = true,
+        desc = 'References',
+      },
+      {
+        'gI',
+        function()
+          Snacks.picker.lsp_implementations()
+        end,
+        desc = 'Goto Implementation',
+      },
+      {
+        'gy',
+        function()
+          Snacks.picker.lsp_type_definitions()
+        end,
+        desc = 'Goto T[y]pe Definition',
+      },
+      {
+        '<leader>ss',
+        function()
+          Snacks.picker.lsp_symbols()
+        end,
+        desc = 'LSP Symbols',
+      },
+      {
+        '<leader>sS',
+        function()
+          Snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = 'LSP Workspace Symbols',
+      },
+      {
+        '<leader>gB',
+        function()
+          Snacks.gitbrowse()
+        end,
+        desc = 'Git Browse',
+        mode = { 'n', 'v' },
+      },
+    },
   },
 
   -- LSP Plugins
@@ -582,16 +982,16 @@ require('lazy').setup({
           map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
           -- Find references for the word under your cursor.
-          map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          -- map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          -- map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          -- map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -599,18 +999,18 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+          -- map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
+          -- map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+          -- map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
+          -- map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -721,10 +1121,11 @@ require('lazy').setup({
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
+        ts_ls = {
+          root_dir = require('lspconfig.util').root_pattern('tsconfig.base.json', 'nx.json', 'package.json', '.git'),
+          single_file_support = false,
+        },
         fish_lsp = {},
-        eslint = {},
         prettierd = {},
         postgres_lsp = {},
         docker_compose_language_service = {},
@@ -888,7 +1289,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'enter',
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
@@ -970,6 +1371,7 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      require('mini.sessions').setup()
       require('mini.comment').setup {
         -- Options which control module behavior
         options = {
@@ -1100,15 +1502,24 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
   {
-    'toppair/peek.nvim',
-    event = { 'VeryLazy' },
-    build = 'deno task --quiet build:fast',
-    config = function()
-      require('peek').setup()
-      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
     end,
+    ft = { 'markdown' },
   },
+  -- {
+  --   'toppair/peek.nvim',
+  --   event = { 'VeryLazy' },
+  --   build = 'deno task --quiet build:fast',
+  --   config = function()
+  --     require('peek').setup()
+  --     vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+  --     vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+  --   end,
+  -- },
   {
     'ggml-org/llama.vim',
     init = function()
@@ -1140,27 +1551,27 @@ require('lazy').setup({
 
       -- We need to use a special approach to map two-key sequences
       vim.cmd [[
-        " Map Alt+\ followed by direction keys
-        nnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
-        nnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
-        nnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
-        nnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        " Map Alt+$ followed by direction keys
+        nnoremap <silent> <A-$>n <Cmd>lua require('Navigator').left()<CR>
+        nnoremap <silent> <A-$>e <Cmd>lua require('Navigator').down()<CR>
+        nnoremap <silent> <A-$>u <Cmd>lua require('Navigator').up()<CR>
+        nnoremap <silent> <A-$>i <Cmd>lua require('Navigator').right()<CR>
         
         " Also map for other modes
-        tnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
-        tnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
-        tnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
-        tnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        tnoremap <silent> <A-$>n <Cmd>lua require('Navigator').left()<CR>
+        tnoremap <silent> <A-$>e <Cmd>lua require('Navigator').down()<CR>
+        tnoremap <silent> <A-$>u <Cmd>lua require('Navigator').up()<CR>
+        tnoremap <silent> <A-$>i <Cmd>lua require('Navigator').right()<CR>
         
-        inoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
-        inoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
-        inoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
-        inoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        inoremap <silent> <A-$>n <Cmd>lua require('Navigator').left()<CR>
+        inoremap <silent> <A-$>e <Cmd>lua require('Navigator').down()<CR>
+        inoremap <silent> <A-$>u <Cmd>lua require('Navigator').up()<CR>
+        inoremap <silent> <A-$>i <Cmd>lua require('Navigator').right()<CR>
         
-        vnoremap <silent> <A-\>n <Cmd>lua require('Navigator').left()<CR>
-        vnoremap <silent> <A-\>u <Cmd>lua require('Navigator').down()<CR>
-        vnoremap <silent> <A-\>e <Cmd>lua require('Navigator').up()<CR>
-        vnoremap <silent> <A-\>i <Cmd>lua require('Navigator').right()<CR>
+        vnoremap <silent> <A-$>n <Cmd>lua require('Navigator').left()<CR>
+        vnoremap <silent> <A-$>e <Cmd>lua require('Navigator').down()<CR>
+        vnoremap <silent> <A-$>u <Cmd>lua require('Navigator').up()<CR>
+        vnoremap <silent> <A-$>i <Cmd>lua require('Navigator').right()<CR>
       ]]
     end,
   },
@@ -1177,7 +1588,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -1185,6 +1596,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
+
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!

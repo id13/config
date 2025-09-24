@@ -18,6 +18,10 @@ end
 -- =============================================================================
 -- NAVIGATION WITH SHIFT+NEUI
 -- =============================================================================
+vim.keymap.set('n', 'n', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'N', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'k', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'K', '<Nop>', { noremap = true, silent = true })
 
 map({ 'n', 'v' }, '<S-n>', 'h', { desc = 'Move left' })
 map({ 'n', 'v' }, '<S-e>', 'j', { desc = 'Move down' })
@@ -30,5 +34,11 @@ map({ 'n', 'v' }, '<S-i>', 'l', { desc = 'Move right' })
 
 map({ 'n', 'v' }, '<C-e>', '<C-d>', { desc = 'Scroll down (half page)' })
 map({ 'n', 'v' }, '<C-u>', '<C-u>', { desc = 'Scroll up (half page)' })
+
+-- Remap k to next search result (like n)
+vim.keymap.set('n', 'k', 'n', { noremap = true, silent = true })
+
+-- Remap K to previous search result (like N)
+vim.keymap.set('n', 'K', 'N', { noremap = true, silent = true })
 
 return {}
