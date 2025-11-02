@@ -1,6 +1,6 @@
 # @fish-lsp-disable 2002
 # Filesystem
-alias cd='z'
+# alias cd='z'
 alias ..='cd ..' # Go up one directory
 alias ...='cd ../..' # Go up two directories
 alias ....='cd ../../..' # And for good measure
