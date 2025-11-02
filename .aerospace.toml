@@ -122,7 +122,7 @@ ctrl-alt-u = 'move up'
 ctrl-alt-i = 'move right'
 
 # --- Move window to workspace ---
-shift-alt-1 = 'move-node-to-worksapace 1'
+shift-alt-1 = 'move-node-to-workspace 1'
 shift-alt-2 = 'move-node-to-workspace 2'
 shift-alt-3 = 'move-node-to-workspace 3'
 shift-alt-4 = 'move-node-to-workspace 4'
