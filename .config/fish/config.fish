@@ -4,6 +4,8 @@ direnv hook fish | source
 
 fzf --fish | source
 
+fish_ssh_agent
+
 set fish_greeting
 
 # if $HOME/.secrets.fish exists then source it

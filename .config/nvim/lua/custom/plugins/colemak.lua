@@ -27,6 +27,8 @@ map({ 'n', 'v' }, '<S-n>', 'h', { desc = 'Move left' })
 map({ 'n', 'v' }, '<S-e>', 'j', { desc = 'Move down' })
 map({ 'n', 'v' }, '<S-u>', 'k', { desc = 'Move up' })
 map({ 'n', 'v' }, '<S-i>', 'l', { desc = 'Move right' })
+map({ 'n' }, '<C-S-i>', 'I', { noremap = true, silent = true, desc = 'Insert at beginning of line' })
+map({ 'n' }, '<C-S-a>', 'A', { noremap = true, silent = true, desc = 'Insert at beginning of line' })
 
 -- =============================================================================
 -- SCROLLING WITH CTRL+E/U

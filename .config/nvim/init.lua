@@ -97,7 +97,8 @@ vim.g.have_nerd_font = true
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
+vim.opt.tabstop = 2 -- Number of spaces a tab counts for
+vim.opt.shiftwidth = 2 -- Number of spaces for each indentation
 vim.o.expandtab = true
 
 -- Make line numbers default
@@ -1474,7 +1475,6 @@ require('lazy').setup({
         'python',
         'query',
         'sql',
-        'swift',
         'typescript',
         'terraform',
         'regex',

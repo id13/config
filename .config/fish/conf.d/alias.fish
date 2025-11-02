@@ -18,3 +18,7 @@ alias sftp='with-readline sftp'
 alias icat='kitten icat'
 alias top='btop'
 alias glow='glow -t'
+
+# Dust GCP aliases
+alias dust-us='gcloud config configurations activate us-central1 && gcloud container clusters get-credentials dust-kube --region us-central1'
+alias dust-eu='gcloud config configurations activate europe-west1 && gcloud container clusters get-credentials dust-kube --region europe-west1'

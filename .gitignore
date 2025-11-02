@@ -3,3 +3,5 @@ tags
 .config/gcloud
 .config/swiftpm
 .config/raycast
+.config/helm
+.config/temporalio
