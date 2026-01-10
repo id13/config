@@ -572,8 +572,8 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
+        clangd = {},
+        gopls = {},
         pyright = {},
         pylsp = {},
         -- rust_analyzer = {},
@@ -588,13 +588,21 @@ require('lazy').setup({
         },
         fish_lsp = {},
         prettierd = {},
-        postgres_lsp = {},
         docker_compose_language_service = {},
         dockerls = {},
         terraformls = {},
         terraform = {},
+        rust_analyzer = {},
+        helm_ls = {},
+        biome = {},
         gh_actions_ls = {},
+
         --
+        eslint = {
+          settings = {
+            workingDirectory = { mode = 'auto' },
+          },
+        },
 
         lua_ls = {
           -- cmd = { ... },
@@ -611,6 +619,11 @@ require('lazy').setup({
           },
         },
       }
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+        command = 'LspEslintFixAll',
+      })
 
       -- Ensure the servers and tools above are installed
       --
@@ -641,7 +654,6 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
           end,
         },
       }
@@ -1023,7 +1035,7 @@ require('lazy').setup({
     'miversen33/sunglasses.nvim',
     opts = {
       filter_type = 'SHADE',
-      filter_percent = 0.4,
+      filter_percent = 0.3,
     },
   },
   {

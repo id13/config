@@ -5,7 +5,7 @@ local act = wezterm.action
 
 -- Font configuration
 config.font = wezterm.font("Monaco")
-config.font_size = 13.0
+config.font_size = 13
 
 -- Window configuration
 config.window_decorations = "RESIZE"
