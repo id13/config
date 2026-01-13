@@ -284,6 +284,11 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      current_line_blame = true,
+      on_attach = function(bufnr)
+        local gitsigns = require 'gitsigns'
+        vim.keymap.set('n', '<leader>gb', gitsigns.blame, { buffer = bufnr, desc = 'Git blame' })
+      end,
     },
   },
 
@@ -349,7 +354,6 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },
@@ -573,7 +577,6 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        gopls = {},
         pyright = {},
         pylsp = {},
         -- rust_analyzer = {},
@@ -1126,6 +1129,12 @@ require('lazy').setup({
         vnoremap <silent> <A-$>e <Cmd>lua require('Navigator').down()<CR>
         vnoremap <silent> <A-$>u <Cmd>lua require('Navigator').up()<CR>
         vnoremap <silent> <A-$>i <Cmd>lua require('Navigator').right()<CR>
+
+        " Equalize windows on zoom signal from wezterm
+        nnoremap <silent> <A-$>= <Cmd>wincmd =<CR>
+        tnoremap <silent> <A-$>= <Cmd>wincmd =<CR>
+        inoremap <silent> <A-$>= <Cmd>wincmd =<CR>
+        vnoremap <silent> <A-$>= <Cmd>wincmd =<CR>
         ]]
     end,
   },

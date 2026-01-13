@@ -85,6 +85,23 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  init = function()
+    -- Disable netrw completely
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    -- Show dashboard instead of directory listing
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        local arg = vim.fn.argv(0)
+        if arg ~= '' and vim.fn.isdirectory(arg) == 1 then
+          vim.cmd('bdelete')
+          vim.cmd('cd ' .. arg)
+          require('snacks').dashboard()
+        end
+      end,
+    })
+  end,
   ---@type snacks.Config
   opts = {
     -- your configuration comes here
@@ -92,7 +109,10 @@ return {
     -- refer to the configuration section below
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+      replace_netrw = false,
+    },
     indent = { enabled = true },
     input = { enabled = true },
     image = { enabled = true },
@@ -289,7 +309,7 @@ return {
       desc = 'Notification History',
     },
     {
-      '<leader>e',
+      '<leader>E',
       function()
         Snacks.explorer()
       end,
@@ -340,13 +360,6 @@ return {
     },
     -- git
     {
-      '<leader>gb',
-      function()
-        Snacks.picker.git_branches()
-      end,
-      desc = 'Git Branches',
-    },
-    {
       '<leader>gl',
       function()
         Snacks.picker.git_log()
@@ -380,6 +393,16 @@ return {
         Snacks.picker.git_diff()
       end,
       desc = 'Git Diff (Hunks)',
+    },
+    {
+      '<leader>gD',
+      function()
+        vim.ui.input({ prompt = 'Diff against (default ~): ' }, function(input)
+          local ref = input and input ~= '' and input or '~'
+          vim.cmd('Gitsigns diffthis ' .. ref)
+        end)
+      end,
+      desc = 'Git Diff Against',
     },
     {
       '<leader>gf',

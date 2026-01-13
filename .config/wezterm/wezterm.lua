@@ -3,9 +3,18 @@ local config = wezterm.config_builder()
 
 local act = wezterm.action
 
+-- Frontend
+config.front_end = "WebGpu"
+
 -- Font configuration
-config.font = wezterm.font("Monaco")
-config.font_size = 13
+config.font = wezterm.font("Jetbrains Mono")
+config.font_size = 12
+config.font_rules = {
+	{
+		intensity = "Bold",
+		font = wezterm.font({ family = "Jetbrains Mono", weight = "Medium" }),
+	},
+}
 
 -- Window configuration
 config.window_decorations = "RESIZE"
@@ -91,15 +100,7 @@ end)
 config.hide_mouse_cursor_when_typing = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 config.mouse_bindings = {
-	-- Change the default click behavior so that it only selects
-	-- text and doesn't open hyperlinks
-	{
-		event = { Up = { streak = 1, button = "Left" } },
-		mods = "NONE",
-		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-	},
-
-	-- and make CTRL-Click open hyperlinks
+	-- CTRL-Click opens hyperlinks
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "CTRL",
@@ -159,11 +160,36 @@ config.keys = {
 	{ key = "u", mods = "SUPER|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) },
 	{ key = "i", mods = "SUPER|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) },
 
-	-- Toggle between split and maximized layout
-	{ key = "m", mods = "SUPER", action = act.TogglePaneZoomState },
+	-- Toggle between split and maximized layout (signals nvim to equalize panes)
+	{
+		key = "m",
+		mods = "SUPER",
+		action = wezterm.action_callback(function(win, pane)
+			win:perform_action(act.TogglePaneZoomState, pane)
+			if is_vim(pane) then
+				win:perform_action({
+					Multiple = {
+						{ SendKey = { key = "$", mods = "ALT" } },
+						{ SendKey = { key = "=" } },
+					},
+				}, pane)
+			end
+		end),
+	},
 
 	-- Scrollback (approximate kitty's scrollback functionality)
 	{ key = "h", mods = "SUPER", action = act.ActivateCopyMode },
+
+	-- Copy mode only when in vim
+	{
+		key = "c",
+		mods = "SUPER|SHIFT",
+		action = wezterm.action_callback(function(win, pane)
+			if is_vim(pane) then
+				win:perform_action(act.ActivateCopyMode, pane)
+			end
+		end),
+	},
 
 	-- Tab navigation
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
