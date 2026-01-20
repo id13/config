@@ -1065,7 +1065,7 @@ require('lazy').setup({
     config = function()
       -- default settings
       require('origami').setup {
-        useLspFoldsWithTreesitterFallback = true,
+        -- useLspFoldsWithTreesitterFallback = true,
         pauseFoldsOnSearch = true,
         foldtext = {
           enabled = true,
