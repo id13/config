@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:zellij.dev)",
+      "WebSearch"
     ],
     "deny": []
   }

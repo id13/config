@@ -106,6 +106,22 @@ config.mouse_bindings = {
 		mods = "CTRL",
 		action = act.OpenLinkAtMouseCursor,
 	},
+	-- Disable copy on select (single, double, triple click)
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "NONE",
+		action = act.Nop,
+	},
+	{
+		event = { Up = { streak = 2, button = "Left" } },
+		mods = "NONE",
+		action = act.Nop,
+	},
+	{
+		event = { Up = { streak = 3, button = "Left" } },
+		mods = "NONE",
+		action = act.Nop,
+	},
 }
 
 -- This function returns true if the current pane is running Neovim
@@ -114,6 +130,14 @@ local function is_vim(pane)
 	local process_name = process_info and process_info.name or pane:get_title()
 
 	return process_name:find("n?vim") ~= nil
+end
+
+-- This function returns true if the current pane is running Zellij
+local function is_zellij(pane)
+	local process_info = pane:get_foreground_process_info()
+	local process_name = process_info and process_info.name or pane:get_title()
+
+	return process_name:find("zellij") ~= nil
 end
 
 -- Create navigation binding that sends a unique sequence to Neovim
@@ -194,6 +218,26 @@ config.keys = {
 	-- Tab navigation
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "Tab", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
+
+	-- Smart search: zellij -> zellij search, nvim -> /, else -> wezterm search
+	{
+		key = "f",
+		mods = "SUPER",
+		action = wezterm.action_callback(function(win, pane)
+			if is_zellij(pane) then
+				win:perform_action({
+					Multiple = {
+						{ SendKey = { key = "a", mods = "CTRL" } },
+						{ SendKey = { key = "s" } },
+					},
+				}, pane)
+			elseif is_vim(pane) then
+				win:perform_action({ SendKey = { key = "/" } }, pane)
+			else
+				win:perform_action(act.Search({ CaseInSensitiveString = "" }), pane)
+			end
+		end),
+	},
 
 	-- Unbind Alt+Enter (disable fullscreen toggle)
 	{ key = "Enter", mods = "ALT", action = act.DisableDefaultAssignment },
