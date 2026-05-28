@@ -222,6 +222,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+local handle = io.popen "fish -c 'echo $PATH' 2>/dev/null"
+if handle then
+  local fish_path = handle:read('*a'):gsub('\n', ':')
+  handle:close()
+  vim.env.PATH = fish_path .. vim.env.PATH
+end
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -585,27 +592,15 @@ require('lazy').setup({
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        ts_ls = {
-          root_dir = require('lspconfig.util').root_pattern('tsconfig.base.json', 'nx.json', 'package.json', '.git'),
-          single_file_support = false,
-        },
+        tsgo = {},
         fish_lsp = {},
-        prettierd = {},
         docker_compose_language_service = {},
         dockerls = {},
-        terraformls = {},
-        terraform = {},
+        -- terraformls = {}, -- disabled: hangs indexing large workspaces; start manually with :LspStart terraformls when needed
         rust_analyzer = {},
         helm_ls = {},
         biome = {},
         gh_actions_ls = {},
-
-        --
-        eslint = {
-          settings = {
-            workingDirectory = { mode = 'auto' },
-          },
-        },
 
         lua_ls = {
           -- cmd = { ... },
@@ -622,11 +617,6 @@ require('lazy').setup({
           },
         },
       }
-
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-        command = 'LspEslintFixAll',
-      })
 
       -- Ensure the servers and tools above are installed
       --
@@ -647,18 +637,15 @@ require('lazy').setup({
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      for server_name, server in pairs(servers) do
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        vim.lsp.config(server_name, server)
+      end
+
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = {},
         automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          end,
-        },
+        automatic_enable = { exclude = { 'terraformls', 'terraform_lsp' } },
       }
     end,
   },
@@ -678,7 +665,7 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -695,14 +682,22 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'biome-check', 'prettierd', 'prettier', stop_after_first = true },
         terraform = { 'terraform_fmt' },
         yaml = { 'yamlfix' },
+      },
+      formatters = {
+        biome = {
+          require_cwd = true,
+        },
+        ['biome-check'] = {
+          require_cwd = true,
+        },
       },
     },
   },
@@ -921,13 +916,13 @@ require('lazy').setup({
     dependencies = { 'echasnovski/mini.nvim' },
   },
   { 'nvim-treesitter/nvim-treesitter-context' },
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = {
+    lazy = false,
+    config = function()
+      local parsers = {
         'bash',
         'c',
         'diff',
@@ -957,33 +952,25 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'yaml',
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  },
-  {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    build = 'cd app && yarn install',
-    init = function()
-      vim.g.mkdp_filetypes = { 'markdown' }
+      }
+      require('nvim-treesitter').install(parsers)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = '*',
+        callback = function(args)
+          local buf = args.buf
+          local ft = vim.bo[buf].filetype
+          if ft == 'terraform' or ft == 'hcl' then
+            return
+          end
+          local lang = vim.treesitter.language.get_lang(ft)
+          if not lang or not vim.treesitter.language.add(lang) then
+            return
+          end
+          pcall(vim.treesitter.start, buf, lang)
+        end,
+      })
     end,
-    ft = { 'markdown' },
   },
   {
     'folke/trouble.nvim',
@@ -1040,22 +1027,6 @@ require('lazy').setup({
       filter_type = 'SHADE',
       filter_percent = 0.3,
     },
-  },
-  {
-    'ggml-org/llama.vim',
-    init = function()
-      vim.g.llama_config = {
-        endpoint = 'http://127.0.0.1:8012/infill',
-        keymap_accept_full = '<C-y>',
-        n_prefix = 1024,
-        n_suffix = 256,
-        n_predict = 2048,
-        max_cache_keys = 1000,
-        ring_n_chunks = 64,
-        ring_scope = 2048,
-        show_info = 0,
-      }
-    end,
   },
   {
     'chrisgrieser/nvim-origami',

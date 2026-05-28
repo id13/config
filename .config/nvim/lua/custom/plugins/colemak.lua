@@ -43,4 +43,6 @@ vim.keymap.set('n', 'k', 'n', { noremap = true, silent = true })
 -- Remap K to previous search result (like N)
 vim.keymap.set('n', 'K', 'N', { noremap = true, silent = true })
 
+vim.keymap.set('x', '<A-i>', 'I', { desc = 'Insert in visual block mode' })
+
 return {}

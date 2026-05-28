@@ -13,15 +13,17 @@ fish_add_path -g /usr/local/bin
 fish_add_path -g $HOME/.cargo/bin
 fish_add_path -g /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
+fish_add_path /opt/homebrew/opt/helm@3/bin
+fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
 
 # =============================================================================
 # Development Tools
 # =============================================================================
 
 # Node.js
+set -gx NVM_DIR $HOME/.nvm
 set -gx NODE_ENV development
-set -gx NPM_CONFIG_PREFIX $HOME/.npm-global
-fish_add_path -g $HOME/.npm-global/bin
+set --universal nvm_default_version lts
 
 # Python
 set -gx PYTHONDONTWRITEBYTECODE 1
