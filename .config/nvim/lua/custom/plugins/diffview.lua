@@ -3,6 +3,17 @@ return {
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
   keys = {
     { '<leader>gq', '<cmd>DiffviewClose<cr>', desc = 'Close Diffview' },
+    {
+      '<leader>gr',
+      function()
+        vim.ui.input({ prompt = 'Diff against: ', default = 'main' }, function(ref)
+          if not ref or ref == '' then return end
+          local arg = ref:find('%.%.') and ref or (ref .. '...HEAD')
+          vim.cmd('DiffviewOpen ' .. arg)
+        end)
+      end,
+      desc = 'Review: diff against ref',
+    },
   },
   config = function()
     require('diffview').setup {

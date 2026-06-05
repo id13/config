@@ -25,3 +25,6 @@ source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# google-cloud-sdk
+set --export PATH /opt/homebrew/Caskroom/gcloud-cli/latest/google-cloud-sdk/bin $PATH
