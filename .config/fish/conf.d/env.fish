@@ -7,15 +7,16 @@
 # =============================================================================
 
 # Add custom directories to PATH
-fish_add_path -g $HOME/bin
-fish_add_path -g $HOME/.local/bin
-fish_add_path -g /usr/local/bin
-fish_add_path -g $HOME/.cargo/bin
-fish_add_path -g /opt/homebrew/bin
+fish_add_path -a $HOME/bin
+fish_add_path -a $HOME/.local/bin
+fish_add_path -a /usr/local/bin
+fish_add_path -a $HOME/.cargo/bin
+fish_add_path -a /opt/homebrew/bin
+fish_add_path -U $HOME/go/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path /opt/homebrew/opt/helm@3/bin
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
-
+fish_add_path $HOME/.local/share/../bin
 # =============================================================================
 # Development Tools
 # =============================================================================
