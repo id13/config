@@ -1,0 +1,7 @@
+{
+  "name": "wezterm-status",
+  "private": true,
+  "dependencies": {
+    "@opencode/plugin": "2.0.18"
+  }
+}
