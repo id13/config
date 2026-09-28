@@ -17,6 +17,8 @@ fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path /opt/homebrew/opt/helm@3/bin
 fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
 fish_add_path $HOME/.local/share/../bin
+fish_add_path $HOME/.krew/bin
+
 # =============================================================================
 # Development Tools
 # =============================================================================

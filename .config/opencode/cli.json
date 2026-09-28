@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": false,
+    "permissions": "autoaccept"
+  },
+  "theme": {
+    "name": "tokyonight"
+  },
+  "animations": true,
+  "diffs": {
+    "view": "split",
+    "tree": true
+  },
+  "attention": {
+    "notifications": false,
+    "sound": false,
+    "volume": 0.6
+  },
+  "terminal": {
+    "copy": "manual"
+  },
+  "tabs": {
+    "layout": "horizontal"
+  }
+}

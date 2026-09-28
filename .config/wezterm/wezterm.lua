@@ -34,6 +34,9 @@ config.tab_bar_at_bottom = false
 config.show_tab_index_in_tab_bar = false
 config.tab_max_width = 50
 config.tab_and_split_indices_are_zero_based = false
+-- Allow terminal toast notifications from background panes/tabs/windows without
+-- interrupting the pane we're already looking at.
+config.notification_handling = "SuppressFromFocusedPane"
 
 -- Add vertical padding to tab bar
 config.window_frame = {
@@ -57,6 +60,7 @@ config.use_fancy_tab_bar = false
 -- Custom tab bar formatting with more padding and better styling
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local pane = tab.active_pane
+	local opencode_status = pane.user_vars.OPENCODE_STATUS
 	local cwd_uri = pane.current_working_dir
 	local title = ""
 
@@ -72,7 +76,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	end
 
 	-- Truncate title if too long
-	local max_title_len = 30
+	local max_title_len = opencode_status and opencode_status ~= "" and 23 or 30
 	if #title > max_title_len then
 		title = title:sub(1, max_title_len - 3) .. "..."
 	end
@@ -85,15 +89,42 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		bg_color = "#7aa2f7"
 		fg_color = "#16161e"
 	end
+	local status_color = {
+		running = "#e0af68",
+		done = "#9ece6a",
+		failed = "#f7768e",
+	}
+	local status_icon = {
+		running = "●",
+		done = "✓",
+		failed = "!",
+	}
 
 	-- Add padding and styling
-	return {
+	local result = {
 		{ Background = { Color = bg_color } },
 		{ Foreground = { Color = fg_color } },
 		{ Text = "  " },
 		{ Text = title },
-		{ Text = "  " },
 	}
+	if status_icon[opencode_status] then
+		table.insert(result, { Text = "  " })
+		table.insert(result, { Foreground = { Color = status_color[opencode_status] } })
+		table.insert(result, { Text = status_icon[opencode_status] })
+	end
+	table.insert(result, { Text = "  " })
+	return result
+end)
+
+-- OpenCode's built-in alerts cover unfocused windows. When another WezTerm
+-- pane/tab is focused, turn its completion status into a macOS notification too.
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	if name ~= "OPENCODE_STATUS" or (value ~= "done" and value ~= "failed") then
+		return
+	end
+	if window:is_focused() and window:active_pane():pane_id() ~= pane:pane_id() then
+		window:toast_notification("OpenCode", value == "done" and "Task finished" or "Task failed")
+	end
 end)
 
 -- Mouse configuration
@@ -167,7 +198,7 @@ end
 config.keys = {
 	-- Split panes
 	{ key = "-", mods = "SUPER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "|", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "\\", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
 	-- Navigate panes (using vim-like keys)
 	split_nav("n", "Left"),

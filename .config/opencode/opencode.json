@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "@plannotator/opencode@latest"
+  ],
+  "references": {
+    "design-skills": {
+      "path": "/Users/jd/repos/dust-tt/design-engineering-skills",
+      "description": "Design engineering skills and guidance for UI design, animation, and polish"
+    }
+  }
+}
